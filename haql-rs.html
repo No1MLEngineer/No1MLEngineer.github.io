@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>haql-rs — Reservoir Forecasts in Seconds, From Your Eclipse Deck | Haql Labs</title>
+<meta name="description" content="haql-rs runs two-phase black-oil reservoir forecasts in ~35 seconds on a laptop, straight from your Eclipse deck. Injector pressure matches the reference; producer pressure within 2.3%. Offline, deterministic, fixed-fee pilot available.">
+<link rel="canonical" href="https://haql-lab.github.io/haql-rs.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haql-rs — Reservoir Forecasts in Seconds">
+<meta property="og:description" content="Two-phase black-oil forecasts in ~35 seconds on a laptop, from your Eclipse deck. Offline, deterministic, honestly benchmarked.">
+<meta property="og:url" content="https://haql-lab.github.io/haql-rs.html">
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>haql<span class="logo__dot">.</span></a>
+    <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="haql-qc.html">QC</a>
+      <a href="haql-closeout.html">Closeout</a>
+      <a href="haql-45q.html">45Q</a>
+      <a href="haql-rs.html">RS</a>
+      <a href="haql-units.html">Units</a>
+      <a href="haql-coords.html">Coords</a>
+      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=haql-rs%20pilot%20enquiry">Ask about a pilot</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <p class="eyebrow">haql-rs · Reservoir simulation</p>
+      <h1>The forecast is ready <em>before the cluster queue starts it.</em></h1>
+      <p class="lede">A two-phase black-oil forecast in about 35 seconds, on a laptop, straight from the Eclipse deck you already have. No license server, no cluster allocation, no queue. Ask what happens if the injector rate doubles, and have the answer before the meeting moves on.</p>
+      <div class="cta">
+        <a class="btn btn--p" href="#pilot">The $50k pilot</a>
+        <a class="btn btn--s" href="#leverage">Why companies switch</a>
+      </div>
+      <p class="reassure"><b>Deterministic:</b> the same deck and flags produce the same forecast, every run — seeded, reproducible, checkable.</p>
+    </div>
+
+    <div class="hero__panel">
+      <div class="panel__bar"><span class="dot"></span>one command</div>
+      <pre class="panel__body"><span class="c"># your Eclipse deck, unchanged</span>
+haql-rs run --from-eclipse field.DATA -e 50
+
+<span class="c"># result (t=100 days, vs finite-difference reference)</span>
+  Injector   <span class="g">4800 psi</span>   ref 4801 psi   <span class="g">match</span>
+  Producer   <span class="y">3751 psi</span>   ref 3840 psi   <span class="y">-2.3%</span>
+
+<span class="c"># a what-if, seconds later</span>
+haql-rs run --from-eclipse field.DATA \
+  --inj 20000 -e 50</pre>
+      <p class="panel__cap">Measured numbers from our own benchmark runs, published below with the misses included — including the 3.6-point gas saturation gap we have not closed yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS ============ -->
+<section class="sec" id="what">
+  <div class="wrap">
+    <p class="eyebrow">What it is</p>
+    <h2>A fast screening simulator that reads Eclipse and speaks plain numbers.</h2>
+    <p class="lede lede--c">2D two-phase black-oil (oil + gas, SPE-1/PUNQ fluids, Peaceman wells), single-phase validation path, heterogeneous permeability maps, production-data fitting. One small binary, one CPU thread, fully offline.</p>
+    <div class="io">
+      <div class="io__b">
+        <h4>Goes in</h4>
+        <p>Your Eclipse deck (.DATA) or a handful of flags — permeability, porosity, rates, well positions. FIELD and METRIC decks; 43-point integration suite guards the import.</p>
+      </div>
+      <div class="io__b">
+        <h4>Comes out</h4>
+        <p>Well pressures and gas saturation at 100 days, full-field CSV grids, and an evaluation report with in-place volumes and a material-balance error computed from the outputs — not hidden inside a loss function.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY YOU NEED IT / LEVERAGE ============ -->
+<section class="sec sec--alt" id="leverage">
+  <div class="wrap">
+    <p class="eyebrow">Why companies need it</p>
+    <h2>Every current simulator taxes you three times. haql-rs charges none of them.</h2>
+    <p class="lede lede--c">Eclipse, CMG, tNavigator and their peers are excellent at what they do. They also all impose the same three costs — and those costs, not accuracy, are what haql-rs removes.</p>
+    <div class="pains">
+      <article class="pain">
+        <h3>The license-server tax</h3>
+        <p>A commercial seat costs roughly a junior engineer's salary every year, needs a license server, and stops working the day the paperwork lapses — including in the field office and on the rig, where the questions actually arise. haql-rs is one small binary with an offline hardware-bound key. It runs where the work is.</p>
+      </article>
+      <article class="pain">
+        <h3>The cluster-queue tax</h3>
+        <p>A history-match loop on a sector model means rebuild the deck, submit to the cluster, wait in queue — thirty minutes to hours per iteration, dozens of iterations per match. haql-rs closes the same loop in 35 seconds on a laptop. Five what-ifs finish in the time one cluster job takes to start.</p>
+      </article>
+      <article class="pain">
+        <h3>The seat-count tax</h3>
+        <p>Per-seat pricing means only three people in a fifteen-engineer asset team can afford to touch the model. haql-rs site pricing covers the whole team, so the engineer with the question runs the case instead of filing a request with the engineer holding the license.</p>
+      </article>
+      <article class="pain">
+        <h3>The black-box tax</h3>
+        <p>When a commercial run looks wrong, you get a number and no explanation. haql-rs ships its own finite-difference reference and a validate command that prints pass and fail side by side — including the failures. The producer gas saturation misses by 3.6 points, and that fact is on this page, not buried.</p>
+      </article>
+    </div>
+    <div class="anchor">
+      <p><strong>The number this competes against.</strong> A commercial seat at roughly $30–60k/year against a screening seat at roughly $2k/month; a consulting simulation study at $1–3k/day against a 35-second run. The subscription is priced against the hours and seats you already pay for, not against a feature checklist.</p>
+      <p class="fine">Industry license bands and consulting day rates, 2025–2026. Your mileage varies by basin and vendor contract — ask us for the comparison against your actual renewal quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEASURED NUMBERS ============ -->
+<section class="sec" id="numbers">
+  <div class="wrap">
+    <p class="eyebrow">Measured, not claimed</p>
+    <h2>The full scorecard, misses included.</h2>
+    <div class="stats">
+      <div class="stat"><b>4800</b><span>injector psi vs 4801 reference — match</span></div>
+      <div class="stat"><b>3751</b><span>producer psi vs 3840 reference — −2.3%</span></div>
+      <div class="stat"><b>5.0%</b><span>producer gas saturation vs 8.6% — 3.6pp gap, open work</span></div>
+      <div class="stat"><b>35s</b><span>full two-phase run, 50 epochs, one CPU thread</span></div>
+    </div>
+    <p class="fine">Two-phase SPE-1 waterflood at 100 days, deterministic seed, finite-difference reference on a 51×51 grid. Single-phase path: 38.9 psi RMSE at 100 epochs. Producer 3840 psi reproduces exactly when the producer target is pinned explicitly. Gas saturation is a pinned constant today — the one validated-accuracy gap that matters, and the first item on the roadmap.</p>
+  </div>
+</section>
+
+<!-- ============ LIMITS ============ -->
+<section class="sec sec--alt" id="limits">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Honest limits</p>
+    <h2>What it is not — yet.</h2>
+    <ul class="plain">
+      <li><b>Not a GOR forecaster.</b> Until the gas-saturation gap closes, do not size separators or split revenue on its gas numbers. Pressure-driven decisions are the validated use.</li>
+      <li><b>No BHP-controlled wells.</b> Rate control only; BHP limits in imported decks are reported as ignored, not silently applied.</li>
+      <li><b>2D areal.</b> Sector screening and pattern floods, not full-field 3D development planning.</li>
+      <li><b>Validated on benchmarks, not your field — yet.</b> Which is exactly what the pilot below is for.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PILOT ============ -->
+<section class="sec" id="pilot">
+  <div class="wrap">
+    <p class="eyebrow">The pilot</p>
+    <h2>$50k fixed. Your field. Blind forecast. Pass or fail in writing.</h2>
+    <p class="lede lede--c">Nobody should buy reservoir software on benchmarks — the industry was burned that way. So the pilot replaces our accuracy claims with your own production data.</p>
+    <ol class="flow">
+      <li><b>Ingest</b><span>Weeks 1–2: your deck running in haql-rs, Eclipse-parity check, discrepancy list.</span></li>
+      <li><b>Match</b><span>Weeks 3–6: history-match the first 9 months with your engineer watching every iteration.</span></li>
+      <li><b>Blind forecast</b><span>Weeks 7–10: predict months 10–12, never seen by us, scored against actuals.</span></li>
+      <li><b>Verdict</b><span>Weeks 11–12: pass opens the license conversation; fail gets you a full written failure analysis.</span></li>
+    </ol>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Pro</h3>
+        <p class="tier__p"><b>$2k</b>/month</p>
+        <p>1–3 users, monthly, cancel anytime. Consultants and small teams; the pilot follow-on tier.</p>
+      </div>
+      <div class="tier tier--mid">
+        <h3>Asset</h3>
+        <p class="tier__p"><b>$12–15k</b>/month</p>
+        <p>Up to ~20 engineers, one asset, unlimited runs. Annual, paid quarterly.</p>
+      </div>
+      <div class="tier">
+        <h3>Enterprise</h3>
+        <p class="tier__p"><b>$30k</b>/month</p>
+        <p>Unlimited seats, multi-asset, SLA, onboarding and roadmap commitments in the contract. Annual only.</p>
+      </div>
+    </div>
+    <p class="fine">Fixed $50k pilot, 50% upfront / 50% on the blind-forecast readout. Your data stays yours, in writing. Success criteria signed before starting, not after.</p>
+    <div class="cta">
+      <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=haql-rs%20pilot%20enquiry">Ask about a pilot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec sec--alt" id="faq">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">FAQ</p>
+    <h2>Straight answers.</h2>
+    <details><summary>Does it replace Eclipse or CMG?</summary><p>No. It replaces the cluster queue in front of them. Screen five scenarios in haql-rs in three minutes, then run the winner in full physics. It is a screening tool with validated pressure accuracy, not a replacement simulator.</p></details>
+    <details><summary>Why should I trust a 35-second forecast?</summary><p>Because we publish the misses: the full scorecard above, the 3.6-point gas gap, and a validate command that prints pass and fail against its own reference. And because the pilot lets you test it on your field before paying for a license.</p></details>
+    <details><summary>What do I need to run it?</summary><p>One small binary, one CPU thread, no GPU, no cluster, no license server. Your Eclipse deck goes in unchanged. It runs fully offline, including air-gapped networks.</p></details>
+    <details><summary>Is my data sent anywhere?</summary><p>No. The binary makes no network calls. Like every Haql Labs tool, it runs where the data already is.</p></details>
+    <details><summary>What about the gas saturation gap?</summary><p>It is real, measured, and first on the roadmap: producer gas saturation reads 5.0% against an 8.6% reference. Until it closes, make pressure-driven decisions with haql-rs and keep gas-rate-critical work on your incumbent.</p></details>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="contact">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Contact</p>
+    <h2>Start with a 15-minute call.</h2>
+    <p class="lede">Tell us your asset, your simulator, and where the queue hurts. If the pilot fits, you'll have a fixed price and success criteria within a week.</p>
+    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=haql-rs%20pilot%20enquiry">no1mlengineer234@gmail.com</a>
+    <div class="links">
+      <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p>&copy; <span id="yr">2026</span> haql labs</p>
+    <p class="fine">Last updated: October 2026. Numbers on this page are measured benchmark outputs; the gas-saturation gap is open work. Findings are advisory; the judgment is yours.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
