@@ -8,6 +8,10 @@ One page per product:
 - `haql-qc.html` — production data QC with verifiable audit trails
 - `haql-closeout.html` — month-end closeout QC (well tests vs daily, downtime vs production, gaps, field balance, cumulatives, negatives, duplicates)
 - `haql-45q.html` — 45Q MRV packager (mass balance, statutory credit rates, certification pack, Subpart RR due clock)
+- `haql-rs.html` — two-phase black-oil reservoir simulation forecasts
+- `haql-emission.html` — GHG inventory reconciliation and EU ETS allowance position
+- `haql-rrc.html` — Texas RRC Form PR filing QC (operator, disposition codes, district, deadline, fine clock)
+- `haql-dataroom.html` — A&D dataroom cross-check (production vs well master/RRC, revenue, severance, reserves, LAS)
 - `haql-units.html` — field-to-SI unit conversions (MIT)
 - `haql-coords.html` — minimum curvature, DLS, UTM/WGS84 (MIT)
 

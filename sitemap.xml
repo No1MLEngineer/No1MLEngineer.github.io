@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://haql-lab.github.io/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-13</lastmod>
   </url>
   <url>
     <loc>https://haql-lab.github.io/haql-qc.html</loc>
@@ -15,6 +15,18 @@
   <url>
     <loc>https://haql-lab.github.io/haql-45q.html</loc>
     <lastmod>2026-10-08</lastmod>
+  </url>
+  <url>
+    <loc>https://haql-lab.github.io/haql-emission.html</loc>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://haql-lab.github.io/haql-rrc.html</loc>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://haql-lab.github.io/haql-dataroom.html</loc>
+    <lastmod>2026-10-13</lastmod>
   </url>
   <url>
     <loc>https://haql-lab.github.io/haql-units.html</loc>

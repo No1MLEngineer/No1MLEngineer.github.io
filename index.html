@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Haql Labs — Catch Errors Before You File | Deterministic Oil &amp; Gas Software</title>
-<meta name="description" content="Deterministic, offline software for oil and gas data: production QC, month-end closeout, 45Q carbon credit MRV, plus free MIT unit and coordinate libraries. Every finding cites the exact source row. Licenses from $349/month.">
+<meta name="description" content="Deterministic, offline software for oil and gas data: production QC, month-end closeout, 45Q carbon credit MRV, emissions/GHG inventory MRV, Texas RRC filing QC, A&D dataroom QC, plus free MIT unit and coordinate libraries. Every finding cites the exact source row. Licenses from $349/month.">
 <link rel="canonical" href="https://haql-lab.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Haql Labs — Catch Errors Before You File">
-<meta property="og:description" content="Deterministic, offline tools for oil and gas production data, 45Q carbon credits, units and coordinates. Every finding cites the exact source row. Licenses from $349/month.">
+<meta property="og:description" content="Deterministic, offline tools for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units and coordinates. Every finding cites the exact source row. Licenses from $349/month.">
 <meta property="og:url" content="https://haql-lab.github.io/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haql Labs — Catch Errors Before You File">
-<meta name="twitter:description" content="Deterministic software for oil and gas data: production QC, month-end closeout, 45Q MRV, units, coordinates. Offline, traceable to the row.">
+<meta name="twitter:description" content="Deterministic software for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units, coordinates. Offline, traceable to the row.">
 <meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -32,6 +32,9 @@
       <a href="haql-closeout.html">Closeout</a>
       <a href="haql-45q.html">45Q</a>
       <a href="haql-rs.html">RS</a>
+      <a href="haql-emission.html">Emission</a>
+      <a href="haql-rrc.html">RRC</a>
+      <a href="haql-dataroom.html">Dataroom</a>
       <a href="haql-units.html">Units</a>
       <a href="haql-coords.html">Coords</a>
       <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
@@ -57,8 +60,9 @@
 
     <div class="hero__panel">
       <div class="panel__bar"><span class="dot"></span>the whole suite, one desk</div>
-      <pre class="panel__body"><span class="c"># proprietary — QC, closeout, 45Q</span>
-pip install haql-qc haql-closeout haql-45q
+      <pre class="panel__body"><span class="c"># proprietary — 6 products</span>
+pip install haql-qc haql-closeout haql-45q \
+            haql-emission haql-rrc haql-dataroom
 
 <span class="c"># MIT — free forever</span>
 pip install haql-units haql-coords
@@ -70,7 +74,14 @@ haql-qc -i production.csv -r audit.json
 haql-closeout -i production.csv -r closeout.json
 
 <span class="c"># price a year of CO2 and package the claim</span>
-haql-45q data_dir --no-open -o cert-pack</pre>
+haql-45q data_dir --no-open -o cert-pack
+
+<span class="c"># reconcile a GHG inventory and price allowances</span>
+haql-emission facility_dir --no-open -o emissions-pack
+
+<span class="c"># check a PR filing and a dataroom</span>
+haql-rrc pr_export.csv --report rrc-audit.json
+haql-dataroom deal_dir --report dataroom-audit.json</pre>
     </div>
   </div>
 </section>
@@ -79,7 +90,7 @@ haql-45q data_dir --no-open -o cert-pack</pre>
 <section class="sec" id="tools">
   <div class="wrap">
     <p class="eyebrow">The products</p>
-    <h2>Six tools. Each one answers one question you already ask.</h2>
+    <h2>Nine tools. Each one answers one question you already ask.</h2>
     <p class="lede lede--c">One product page each, below. Every tool shares the same design stance: read-only, offline, deterministic, and every finding traceable to a row in your own file.</p>
 
     <div class="tools">
@@ -117,6 +128,33 @@ haql-45q data_dir --no-open -o cert-pack</pre>
         </div>
         <p>Two-phase black-oil forecasts in ~35 seconds on a laptop, straight from your Eclipse deck. Measured accuracy published with the misses; fixed-fee pilot with a blind forecast.</p>
         <a class="btn btn--p btn--sm" href="haql-rs.html">View haql-rs</a>
+      </article>
+
+      <article class="tool">
+        <div class="tool__hd">
+          <h3>haql-emission</h3>
+          <span class="pill">Emissions MRV</span>
+        </div>
+        <p>Reconciles a GHG inventory from activity, flare, vent and monitoring exports: activity-to-inventory mass balance, flare and vent quantification, coverage, and an EU ETS allowance position with penalty exposure.</p>
+        <a class="btn btn--p btn--sm" href="haql-emission.html">View haql-emission</a>
+      </article>
+
+      <article class="tool">
+        <div class="tool__hd">
+          <h3>haql-rrc</h3>
+          <span class="pill">RRC filing</span>
+        </div>
+        <p>Checks a Texas RRC Form PR export before it is filed: P-5 operator numbers, disposition codes against the printed tables, district range, flare remarks, plus the filing deadline and fine-exposure clock.</p>
+        <a class="btn btn--p btn--sm" href="haql-rrc.html">View haql-rrc</a>
+      </article>
+
+      <article class="tool">
+        <div class="tool__hd">
+          <h3>haql-dataroom</h3>
+          <span class="pill">A&amp;D dataroom</span>
+        </div>
+        <p>Cross-checks an acquisition dataroom offline: production against the well master and RRC, revenue and severance tables, reserves and LAS headers — every contradiction traced to a source row before the deal closes.</p>
+        <a class="btn btn--p btn--sm" href="haql-dataroom.html">View haql-dataroom</a>
       </article>
 
       <article class="tool">
@@ -254,7 +292,7 @@ haql-45q data_dir --no-open -o cert-pack</pre>
     <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call, no language model anywhere in the packages. Running the same file twice gives the same answer.</p></details>
     <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check instead, you are choosing to email us the file, and you can ask for it back anonymised or deleted.</p></details>
     <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself you need Python 3.9 or newer and nothing else; the audit engine is standard library only.</p></details>
-    <details><summary>Which product do I need?</summary><p>QC for the daily or monthly export you already have; closeout when the period needs to be locked; <span class="mono">haql-45q</span> if you report carbon capture and storage. Units and Coords are free libraries you use from your own code.</p></details>
+    <details><summary>Which product do I need?</summary><p>QC for the daily or monthly export you already have; closeout when the period needs to be locked; <span class="mono">haql-45q</span> if you report carbon capture and storage; <span class="mono">haql-emission</span> if you file a GHG inventory or owe EU ETS allowances; <span class="mono">haql-rrc</span> before a Texas PR filing; <span class="mono">haql-dataroom</span> before an acquisition closes. Units and Coords are free libraries you use from your own code.</p></details>
     <details><summary>Can I try it free?</summary><p>Yes. Email one month of data — anonymised if you prefer — and you get the full report at no cost. Evaluation use of the CLI also needs no license key.</p></details>
     <details><summary>How is it licensed?</summary><p><span class="mono">haql-qc</span>, <span class="mono">haql-closeout</span> and <span class="mono">haql-45q</span> are proprietary: running them commercially requires a license. Licenses are signed ed25519 tokens carrying company, tier, seats and expiry, verified entirely offline against an embedded public key — no activation server, no phone-home. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> are MIT and need no license at all.</p></details>
     <details><summary>Will it decide whether my well is performing?</summary><p>No. Plausibility is not performance. It flags a rate above the configured plausibility ceiling — not because the rate is unusual, but because it cannot be real in your facility. It refuses questions outside its competence.</p></details>
@@ -282,7 +320,7 @@ haql-45q data_dir --no-open -o cert-pack</pre>
 <footer class="ftr">
   <div class="wrap ftr__in">
     <p>&copy; <span id="yr">2026</span> haql labs</p>
-    <p class="fine">Last updated: October 8, 2026. haql-qc ruleset_version 1.2.0 · haql-closeout ruleset_version 1.0.0 · haql-45q ruleset_version 1.0.0.</p>
+    <p class="fine">Last updated: October 13, 2026. haql-qc ruleset_version 1.2.0 · haql-closeout ruleset_version 1.0.0 · haql-45q ruleset_version 1.0.0 · haql-emission ruleset_version 1.0.0 · haql-rrc ruleset_version 1.0.0 · haql-dataroom ruleset_version 1.0.0.</p>
     <p class="fine">Deterministic tools for oil and gas production data. Findings are advisory; the judgment is yours.</p>
   </div>
 </footer>

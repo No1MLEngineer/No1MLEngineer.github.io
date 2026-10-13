@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>haql-emission — Reconcile a GHG Inventory and Price the Allowance Position | Haql Labs</title>
+<meta name="description" content="haql-emission turns activity, flare, vent and monitoring exports into a defensible GHG inventory: activity-to-inventory mass balance, flare and vent quantification, month and quarter coverage, and an EU ETS allowance position with penalty exposure. Runs offline.">
+<link rel="canonical" href="https://haql-lab.github.io/haql-emission.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haql-emission — A Reported Total Is Not a Balance">
+<meta property="og:description" content="Activity-to-inventory mass balance, flare and vent quantification, coverage and an EU ETS allowance position — built to survive review, not just to add up.">
+<meta property="og:url" content="https://haql-lab.github.io/haql-emission.html">
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>haql<span class="logo__dot">.</span></a>
+    <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="haql-qc.html">QC</a>
+      <a href="haql-closeout.html">Closeout</a>
+      <a href="haql-45q.html">45Q</a>
+      <a href="haql-rs.html">RS</a>
+      <a href="haql-emission.html">Emission</a>
+      <a href="haql-rrc.html">RRC</a>
+      <a href="haql-dataroom.html">Dataroom</a>
+      <a href="haql-units.html">Units</a>
+      <a href="haql-coords.html">Coords</a>
+      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <p class="eyebrow">haql-emission · emissions MRV packager</p>
+      <h1>A reported total is not a <em>balance</em>. haql-emission makes it one.</h1>
+      <p class="lede">A GHG inventory (GHGRP Subpart W, EU ETS) stands or falls on a single identity: the reported CO<sub>2</sub>e equals what the activity, flare and vent rows actually add up to. haql-emission reconciles that identity to the tonne, quantifies flaring and venting, measures month and quarter coverage, and prices your EU ETS allowance position and penalty exposure — from four exports you already keep.</p>
+      <div class="cta">
+        <a class="btn btn--p" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me a year — free check</a>
+        <a class="btn btn--s" href="#catch">See what it catches</a>
+      </div>
+      <p class="reassure"><b>Run it yourself:</b> <code class="mono">pip install haql-emission</code> — a directory in, an emissions pack out. Fully offline, deterministic, same rules every run.</p>
+    </div>
+
+    <div class="hero__panel">
+      <div class="panel__bar"><span class="dot"></span>one command, one reporting year</div>
+      <pre class="panel__body"><span class="c"># generate a synthetic facility (12 months, planted gaps)</span>
+haql-emission demo
+
+<span class="c"># reconcile the year and price the allowance position</span>
+haql-emission demo_emission --no-open -o emissions-pack
+
+<span class="c"># result</span>
+<span class="k">rows</span>=38 <span class="k">entities</span>=3 <span class="k">issues</span>=<span class="w">7</span>
+  critical=<span class="w">1</span> high=<span class="w">4</span> medium=1 low=1 info=0
+  allowance position <span class="b">-171.9</span> t CO<sub>2</sub>e · penalty exposure €<span class="w">17,185</span>
+  fingerprint sha256=<span class="b">24271ad320cca904…</span>
+  emissions-pack.json   → emissions-pack/emissions-pack.json
+  emissions-pack.html   → emissions-pack/emissions-pack.html
+  allowance-position.csv → emissions-pack/allowance-position.csv</pre>
+      <p class="panel__cap">The reported inventory is generated from the activity rows themselves, so the mass balance stays quiet — the faults are the loud part, not a phantom gap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS ============ -->
+<section class="sec" id="what">
+  <div class="wrap">
+    <p class="eyebrow">What it is</p>
+    <h2>Four exports and a config in. A reconciled inventory and allowance position out.</h2>
+    <p class="lede lede--c">No EHS platform integration. No database. Just the records you already keep, checked against the physics of combustion and the arithmetic of the scheme.</p>
+    <div class="io">
+      <div class="io__b">
+        <h4>Goes in</h4>
+        <p>Activity, flare, vent and monitoring CSVs plus a facility config: reporting year, facility, GWP set (AR4 / AR5 / AR6), scheme, and allowances surrendered. A missing optional file is treated as a gap, not guessed around; a missing required column is an error, because nothing can be computed from it.</p>
+      </div>
+      <div class="io__b">
+        <h4>Comes out</h4>
+        <p>An emissions pack (JSON + HTML) with the annual mass balance by species, flaring and venting quantification, month and quarter coverage, every finding traced to a row, and an EU ETS allowance position with penalty exposure — plus an allowance-position.csv you can audit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY YOU NEED IT ============ -->
+<section class="sec sec--alt" id="why">
+  <div class="wrap">
+    <p class="eyebrow">Why you need it</p>
+    <h2>The scheme is the easy part. Reconcile it and prove it is the hard part.</h2>
+    <p class="lede lede--c">Multiplying a volume by an emission factor is arithmetic. What fails in review is the gap between the number you filed and the activity data that is supposed to support it — found by a reviewer in one line.</p>
+    <div class="pains">
+      <article class="pain">
+        <h3>The unaccounted tonne</h3>
+        <p>The reported CO<sub>2</sub>e drifts from the computed balance by more than the 5% tolerance. Either the inventory claims more than the activity supports, or the activity is incomplete — a reviewer will ask which (EM010).</p>
+      </article>
+      <article class="pain">
+        <h3>The implausible flare</h3>
+        <p>A combustion efficiency of 0.50 is not credible for a flare. It silently inflates the uncombusted methane slip, and the whole flare line restates (EM101).</p>
+      </article>
+      <article class="pain">
+        <h3>The missing quarter</h3>
+        <p>Three of four monitoring quarters present, or a month gone from the activity stream. The year's inventory is not wrong — it is incomplete, which is close enough to a rejection for most purposes (EM200, EM201).</p>
+      </article>
+      <article class="pain">
+        <h3>The allowance you owe</h3>
+        <p>Verified emissions exceed surrendered allowances. Every owed tonne carries the €100/t excess-emissions penalty on top of buying the missing allowances (EM300, EM302).</p>
+      </article>
+    </div>
+    <div class="after">
+      <div class="after__c">
+        <h3>Without haql-emission</h3>
+        <p>The year is summed in a spreadsheet. Reported = whatever the EHS export says. The reviewer asks which activity rows back it, and the answer is scattered across four exports and a folder of factors.</p>
+        <p class="muted">Every figure is a fresh reconciliation. Every reconciliation is a chance to be wrong.</p>
+      </div>
+      <div class="after__arrow" aria-hidden="true">&rarr;</div>
+      <div class="after__c">
+        <h3>With haql-emission</h3>
+        <p>The balance reconciled to the tonne, flaring and venting priced by species, coverage named, and a single pack that answers the reviewer's questions before they are asked.</p>
+        <p class="muted">The inventory arrives looking like it was built to be audited.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT CATCHES ============ -->
+<section class="sec" id="catch">
+  <div class="wrap">
+    <p class="eyebrow">What it actually catches</p>
+    <h2>Eighteen ways an inventory is weaker than it looks.</h2>
+    <details class="ex" open>
+      <summary>The full check list</summary>
+      <ul>
+        <li><b>Unaccounted emissions</b> — reported inventory against the computed balance, beyond the 5% tolerance (EM010)</li>
+        <li><b>Negative species totals</b> — a computed CH<sub>4</sub> or CO<sub>2</sub> total below zero, which means the sign convention broke (EM011)</li>
+        <li><b>Implausible combustion efficiency</b> — a flare efficiency outside the credible band, silently moving the methane slip (EM101)</li>
+        <li><b>Flare volume with no backup</b> — a flare row with zero volume, or one carrying no heating value so no CO<sub>2</sub> can be computed (EM102, EM100)</li>
+        <li><b>Impossible vent composition</b> — CH<sub>4</sub> + CO<sub>2</sub> summing above 1.0, or a vent row with no composition at all (EM110, EM111)</li>
+        <li><b>Control efficiency out of range</b> — an activity control efficiency outside [0, 1] (EM112)</li>
+        <li><b>Coverage gaps</b> — a missing activity month (EM200) or monitoring quarter (EM201) that leaves the year incomplete</li>
+        <li><b>Unknown GWP set</b> — a configured assessment report that is not recognised; the tool never silently substitutes one (EM230)</li>
+        <li><b>Reported vs verified mismatch</b> — the two inventory figures disagree beyond 2% (EM240)</li>
+        <li><b>Allowance deficit and penalty</b> — verified emissions over surrendered allowances, priced at the €100/t excess-emissions penalty (EM300, EM302); an ETS year with no recorded surrender (EM301)</li>
+        <li><b>The reporting clock</b> — the annual report due date computed, so the deadline is in the output, not in someone's calendar (EM220)</li>
+        <li><b>Signed evidence trail</b> — <code>--attest --bundle inspection.zip</code> signs the emissions pack (Ed25519 over the pack hash) and wraps pack + allowances + HTML into one byte-reproducible inspection bundle, so the "was this edited?" question dies before review</li>
+      </ul>
+      <p class="fine">Same design stance as the rest of the suite: read-only, offline, deterministic, traceable to the row — and provably unedited.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec sec--alt" id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Priced against a restated inventory, not a seat count.</h2>
+    <div class="anchor">
+      <p>One corrected inventory, one amended filing, or one allowance deficit carries more cost in a single quarter than a year of a license. haql-emission is the cheap insurance.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Sample check</h3>
+        <p class="tier__p"><b>Free</b></p>
+        <p>One reporting year of records, on the house. No key, no seat limit, no card. You get the full balance, findings and allowance position back.</p>
+        <a class="btn btn--p btn--sm" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me the exports</a>
+      </div>
+      <div class="tier tier--mid">
+        <h3>Team</h3>
+        <p class="tier__p"><b>$349</b>/month</p>
+        <p>Annual commitment, up to 10 users, unlimited facilities and fields. Academic research and evaluation use needs no key.</p>
+      </div>
+      <div class="tier">
+        <h3>On-premise</h3>
+        <p class="tier__p"><b>$1,750</b>/month</p>
+        <p>Annual, per site, unlimited users on that site. Under most data-residency policy this is the premise, not a feature.</p>
+      </div>
+    </div>
+    <p class="fine">Evaluation: 30 days, no license key needed.</p>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sec" id="contact">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Next</p>
+    <h2>Run a year through it today.</h2>
+    <p class="lede">Email the four exports — anonymised if you prefer — and get the full balance, findings and allowance position back at no cost.</p>
+    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
+    <div class="links">
+      <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
+      <div><b>haql-qc</b><a href="https://pypi.org/project/haql-qc/" rel="noopener">pypi.org/project/haql-qc</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p>&copy; <span id="yr">2026</span> haql labs</p>
+    <p class="fine">haql-emission ruleset_version 1.0.0 · Last updated: October 13, 2026.</p>
+    <p class="fine">Deterministic tools for oil and gas production data. Findings are advisory; the judgment is yours.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
