@@ -639,3 +639,7 @@ section[id]{scroll-margin-top:calc(var(--hdr-h) + 18px)}
   .sec--alt{background:#fff}
   .tool,.pain,.tier,.after__c,.stat{box-shadow:none}
 }
+
+@media(max-width:960px){
+  .burger{margin-left:auto}
+}
