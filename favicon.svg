@@ -1,15 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="haql">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1d4ed8"/>
-      <stop offset="1" stop-color="#0e7490"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <g fill="#ffffff">
-    <rect x="15" y="34" width="7" height="15" rx="3.5"/>
-    <rect x="28.5" y="24" width="7" height="25" rx="3.5"/>
-    <rect x="42" y="15" width="7" height="34" rx="3.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Haql Labs">
+  <rect width="64" height="64" rx="14" fill="#0d5c55"/>
+  <g fill="#faf9f5">
+    <rect x="14" y="35" width="7.5" height="15" rx="2.5"/>
+    <rect x="28.25" y="25" width="7.5" height="25" rx="2.5"/>
+    <rect x="42.5" y="14" width="7.5" height="36" rx="2.5"/>
   </g>
-  <circle cx="15" cy="24" r="4" fill="#dbeafe"/>
+  <rect x="14" y="52" width="36" height="2" rx="1" fill="#74d3c6" opacity=".7"/>
 </svg>
