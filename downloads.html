@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download — standalone binaries for haql-qc, closeout, 45q, emission, rrc, dataroom | Haql Labs</title>
+<meta name="description" content="Download the Haql Labs tools as single self-contained binaries for Windows, macOS and Linux. No Python to install, fully offline, 30-day evaluation with no license key.">
+<link rel="canonical" href="https://haql-lab.github.io/downloads.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Download the Haql Labs tools — Windows, macOS, Linux">
+<meta property="og:description" content="Single self-contained binaries. No Python, no installer, fully offline. 30-day evaluation, no license key.">
+<meta property="og:url" content="https://haql-lab.github.io/downloads.html">
+<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .dl-os{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.55rem}
+  .dl-os a,.dl-os span{font-size:.8rem}
+  .dl-os .na{opacity:.45;border:1px dashed currentColor;border-radius:999px;padding:.2rem .6rem}
+  .dl-meta{font-size:.72rem;opacity:.72;word-break:break-all;margin-top:.35rem}
+  .zipbox{font-size:.8rem;line-height:1.6}
+  .zipbox code{white-space:nowrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>haql<span class="logo__dot">.</span></a>
+    <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="haql-qc.html">QC</a>
+      <a href="haql-closeout.html">Closeout</a>
+      <a href="haql-45q.html">45Q</a>
+      <a href="haql-rs.html">RS</a>
+      <a href="haql-emission.html">Emission</a>
+      <a href="haql-rrc.html">RRC</a>
+      <a href="haql-dataroom.html">Dataroom</a>
+      <a href="haql-units.html">Units</a>
+      <a href="haql-coords.html">Coords</a>
+      <a href="downloads.html">Downloads</a>
+      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <p class="eyebrow">Download</p>
+      <h1>Download a tool. <em>Run it offline.</em></h1>
+      <p class="lede">Each tool ships as a single self-contained binary — no Python to install, no dependencies to resolve, no installer. Unzip it, run it. It never opens a network connection.</p>
+      <div class="cta">
+        <a class="btn btn--p" href="#tools">Choose your platform</a>
+        <a class="btn btn--s" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Or send me a month — free check</a>
+      </div>
+      <p class="reassure"><b>Evaluation:</b> every tool runs for 30 days with no license key. After that, point it at a signed license file — verified entirely offline, nothing to activate online.</p>
+    </div>
+
+    <div class="hero__panel">
+      <div class="panel__bar"><span class="dot"></span>unzip and run</div>
+      <pre class="panel__body"><span class="c"># macOS / Linux — .zip download, then</span>
+unzip haql-qc-0.4.1-macos-arm64.zip
+./haql-qc --version
+<span class="k">haql-qc 0.4.1 (ruleset 1.2.0)</span>
+
+./haql-qc -i production.csv -r audit.json
+
+<span class="c"># Windows — unzip, then in PowerShell</span>
+.\haql-qc.exe -i production.csv -r audit.json</pre>
+      <p class="panel__cap">Every zip contains the binary, a <code>QUICKSTART.txt</code>, the product <code>README.md</code> and its <code>LICENSE</code>. Nothing else to install.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <p class="eyebrow">The downloads</p>
+    <h2>Pick the tool, pick your operating system.</h2>
+    <p class="lede lede--c">Binaries are built per release for Windows, macOS and Linux. If a platform is greyed out below it has not been built for that tool yet — ask and we will build it.</p>
+
+    <div class="tools">
+      <article class="tool" data-product="haql-qc">
+        <div class="tool__hd"><h3>haql-qc</h3><span class="pill">Data quality</span></div>
+        <p>Deterministic QC over a production export — missing, negative, contradictory, impossible. Every finding cites the rule, the row and the input hash.</p>
+        <p class="fine"><span class="mono" data-version="haql-qc">v0.4.1</span> · <a href="haql-qc.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-qc"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-qc"></p>
+      </article>
+
+      <article class="tool" data-product="haql-closeout">
+        <div class="tool__hd"><h3>haql-closeout</h3><span class="pill">Month-end</span></div>
+        <p>Is this month complete and reconciled enough to lock? Well tests, downtime, field balance and date continuity a per-record pass cannot see.</p>
+        <p class="fine"><span class="mono" data-version="haql-closeout">v0.1.0</span> · <a href="haql-closeout.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-closeout"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-closeout"></p>
+      </article>
+
+      <article class="tool" data-product="haql-45q">
+        <div class="tool__hd"><h3>haql-45q</h3><span class="pill">45Q MRV</span></div>
+        <p>A reporting year of capture, injection and monitoring records into a defensible 45Q credit claim — mass balance, statutory rate, certification pack.</p>
+        <p class="fine"><span class="mono" data-version="haql-45q">v0.1.0</span> · <a href="haql-45q.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-45q"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-45q"></p>
+      </article>
+
+      <article class="tool" data-product="haql-emission">
+        <div class="tool__hd"><h3>haql-emission</h3><span class="pill">Emissions MRV</span></div>
+        <p>Reconcile a GHG inventory from activity, flare, vent and monitoring exports, and price the EU ETS allowance position with penalty exposure.</p>
+        <p class="fine"><span class="mono" data-version="haql-emission">v0.1.0</span> · <a href="haql-emission.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-emission"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-emission"></p>
+      </article>
+
+      <article class="tool" data-product="haql-rrc">
+        <div class="tool__hd"><h3>haql-rrc</h3><span class="pill">RRC filing</span></div>
+        <p>Check a Texas RRC Form PR export before it is filed — operator numbers, disposition codes, district, flare remarks, plus the deadline and fine clock.</p>
+        <p class="fine"><span class="mono" data-version="haql-rrc">v0.1.0</span> · <a href="haql-rrc.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-rrc"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-rrc"></p>
+      </article>
+
+      <article class="tool" data-product="haql-dataroom">
+        <div class="tool__hd"><h3>haql-dataroom</h3><span class="pill">A&amp;D dataroom</span></div>
+        <p>Cross-check an acquisition dataroom offline — production vs well master and RRC, revenue and severance tables, reserves and LAS headers, every contradiction traced to a row.</p>
+        <p class="fine"><span class="mono" data-version="haql-dataroom">v0.1.0</span> · <a href="haql-dataroom.html">what it checks</a></p>
+        <div class="dl-os" data-os-row="haql-dataroom"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
+        <p class="dl-meta" data-sha-row="haql-dataroom"></p>
+      </article>
+
+      <article class="tool">
+        <div class="tool__hd"><h3>haql-rs</h3><span class="pill">Simulation</span></div>
+        <p>Two-phase black-oil forecasts in ~35 seconds on a laptop, straight from your Eclipse deck. Fixed-fee pilot with a blind forecast; builds are provisioned per engagement.</p>
+        <p class="fine">Not a self-serve download — <a href="mailto:no1mlengineer234@gmail.com?subject=haql-rs%20pilot%20enquiry">ask about a pilot</a></p>
+      </article>
+
+      <article class="tool">
+        <div class="tool__hd"><h3>haql-units · haql-coords</h3><span class="pill">MIT</span></div>
+        <p>Unit conversions and wellbore geometry/coordinate math. Free and open source, MIT licensed — install from PyPI or read the source.</p>
+        <p class="fine"><code class="mono">pip install haql-units haql-coords</code></p>
+      </article>
+    </div>
+
+    <p class="fine">Hashes and file sizes come straight from the release index at <a href="downloads/index.json"><code class="mono">downloads/index.json</code></a>. Verify a download with <code class="mono">sha256sum haql-qc-*.zip</code> (macOS/Linux) or <code class="mono">Get-FileHash</code> (Windows) against the value shown on the card.</p>
+  </div>
+</section>
+
+<!-- ============ WHAT'S IN THE ZIP ============ -->
+<section class="sec sec--alt" id="inside">
+  <div class="wrap">
+    <p class="eyebrow">Inside every download</p>
+    <h2>One binary, four files, no source tree.</h2>
+    <div class="io">
+      <div class="io__b">
+        <h4>The executable</h4>
+        <p class="zipbox"><code>haql-qc</code> (macOS/Linux) or <code>haql-qc.exe</code> (Windows) — the whole tool compiled into one file. No Python runtime, no site-packages, nothing to pip-install on the target machine.</p>
+      </div>
+      <div class="io__b">
+        <h4>The paperwork</h4>
+        <p class="zipbox"><code>QUICKSTART.txt</code> — the two commands you need. <code>README.md</code> — what the tool checks. <code>LICENSE</code> — the terms, including the 30-day evaluation.</p>
+      </div>
+    </div>
+    <div class="ben">
+      <div><b>No network calls</b><p>The binary is built to run air-gapped. Reservoir and MRV data frequently cannot leave your infrastructure, so the tool never asks it to.</p></div>
+      <div><b>Read-only by construction</b><p>It cannot auto-correct your data; correcting needs to know which of two contradictory fields is wrong, and the file cannot say. It only reports.</p></div>
+      <div><b>Deterministic</b><p>Same input bytes and configuration, same findings — every run, on every machine. The embedded run timestamps vary; the findings do not.</p></div>
+      <div><b>Offline licensing</b><p>A signed ed25519 token carrying company, tier, seats and expiry, verified against an embedded public key. No activation server, no phone-home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="contact">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Next</p>
+    <h2>Download it, or send us a month of data.</h2>
+    <p class="lede">Run the binary yourself, or email one month of data — anonymised if you prefer — and get the full report at no cost. Same rules either way.</p>
+    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
+    <div class="links">
+      <div><b>Downloads</b><a href="downloads.html">haql-lab.github.io/downloads</a></div>
+      <div><b>GitHub</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p>&copy; <span id="yr">2026</span> haql labs</p>
+    <p class="fine">Builds for Windows, macOS and Linux · haql-qc ruleset_version 1.2.0 · other tools ruleset_version 1.0.0 · Last updated: October 14, 2026.</p>
+    <p class="fine">Deterministic tools for oil and gas production data. Findings are advisory; the judgment is yours.</p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  function tagToOs(t) {
+    if (t.indexOf("windows") === 0) return "windows";
+    if (t.indexOf("macos") === 0) return "macos";
+    if (t.indexOf("linux") === 0) return "linux";
+    return t;
+  }
+  var LABEL = { windows: "Windows", macos: "macOS", linux: "Linux" };
+  fetch("downloads/index.json")
+    .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    .then(function (d) {
+      var byProduct = {};
+      Object.keys(d.entries || {}).forEach(function (k) {
+        var e = d.entries[k];
+        (byProduct[e.name] = byProduct[e.name] || []).push(e);
+      });
+      Object.keys(byProduct).forEach(function (name) {
+        var list = byProduct[name];
+        var ver = document.querySelector('[data-version="' + name + '"]');
+        if (ver && list[0]) ver.textContent = "v" + list[0].version;
+
+        var rows = document.querySelectorAll('[data-os-row="' + name + '"]');
+        Array.prototype.forEach.call(rows, function (row) {
+          row.innerHTML = "";
+          ["windows", "macos", "linux"].forEach(function (os) {
+            var match = list.filter(function (e) { return tagToOs(e.tag) === os; })[0];
+            var el;
+            if (match) {
+              el = document.createElement("a");
+              el.href = "downloads/" + match.file;
+              el.className = "btn btn--p btn--sm";
+              el.setAttribute("download", "");
+              el.title = match.file + "  ·  " + Math.round(match.bytes / 1024) + " KiB";
+            } else {
+              el = document.createElement("span");
+              el.className = "na";
+              el.title = "not built yet";
+            }
+            el.textContent = LABEL[os];
+            row.appendChild(el);
+          });
+        });
+
+        var sha = document.querySelector('[data-sha-row="' + name + '"]');
+        if (sha) {
+          sha.innerHTML = list.map(function (e) {
+            return tagToOs(e.tag) + ": " + Math.round(e.bytes / 1024) + " KiB · sha256 " +
+              e.sha256.slice(0, 16) + "…";
+          }).join("   ·   ");
+        }
+      });
+    })
+    .catch(function () { /* leave the static fallback */ });
+})();
+</script>
+</body>
+</html>

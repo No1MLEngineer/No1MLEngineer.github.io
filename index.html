@@ -37,6 +37,7 @@
       <a href="haql-dataroom.html">Dataroom</a>
       <a href="haql-units.html">Units</a>
       <a href="haql-coords.html">Coords</a>
+      <a href="downloads.html">Downloads</a>
       <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
     </nav>
   </div>
@@ -55,33 +56,26 @@
         <a class="btn btn--p" href="#tools">Compare the tools</a>
         <a class="btn btn--s" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me a month of data</a>
       </div>
-      <p class="reassure"><b>Run any of them yourself:</b> the packages install with pip and run fully offline — nothing leaves your machine. Since 2026, the same rules every run, the same answer every time.</p>
+      <p class="reassure"><b>Run any of them yourself:</b> download a single self-contained binary — no Python, no installer, nothing leaves your machine. Same rules every run, the same answer every time.</p>
     </div>
 
     <div class="hero__panel">
       <div class="panel__bar"><span class="dot"></span>the whole suite, one desk</div>
-      <pre class="panel__body"><span class="c"># proprietary — 6 products</span>
-pip install haql-qc haql-closeout haql-45q \
-            haql-emission haql-rrc haql-dataroom
+      <pre class="panel__body"><span class="c"># proprietary — 6 tools, one self-contained binary each</span>
+<span class="k">haql-qc</span>        QC a production export
+<span class="k">haql-closeout</span>  confirm the month ties out
+<span class="k">haql-45q</span>       price a year of CO2, package the claim
+<span class="k">haql-emission</span>  reconcile a GHG inventory
+<span class="k">haql-rrc</span>       check a PR filing before you file
+<span class="k">haql-dataroom</span>  scrub a dataroom before the deal closes
+
+<span class="c"># Windows .exe · macOS · Linux — no Python needed</span>
+./haql-qc -i production.csv -r audit.json
 
 <span class="c"># MIT — free forever</span>
 pip install haql-units haql-coords
 
-<span class="c"># catch data errors before filing</span>
-haql-qc -i production.csv -r audit.json
-
-<span class="c"># confirm the month ties out</span>
-haql-closeout -i production.csv -r closeout.json
-
-<span class="c"># price a year of CO2 and package the claim</span>
-haql-45q data_dir --no-open -o cert-pack
-
-<span class="c"># reconcile a GHG inventory and price allowances</span>
-haql-emission facility_dir --no-open -o emissions-pack
-
-<span class="c"># check a PR filing and a dataroom</span>
-haql-rrc pr_export.csv --report rrc-audit.json
-haql-dataroom deal_dir --report dataroom-audit.json</pre>
+<span class="c"># every finding cites rule id, source row, input SHA-256</span></pre>
     </div>
   </div>
 </section>
@@ -273,7 +267,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
     <p class="eyebrow">About Haql Labs</p>
     <h2>Why you should hand over a month of data to a stranger.</h2>
     <p class="lede">Fair question. Here is the actual answer.</p>
-    <p>Every Haql Labs package installs the full source locally, so the code that touches your file is on your machine where you can read it before you run it. The rules are numbered permanently: adding a rule never renumbers an existing one, because audit logs referencing them are already in other people's hands.</p>
+    <p>Every Haql tool ships as a single self-contained binary that runs entirely on your machine, offline, with no installer and no Python to configure. It never opens a network connection. The rules are numbered permanently: adding a rule never renumbers an existing one, because audit logs referencing them are already in other people's hands.</p>
     <ul class="plain">
       <li><b>Never corrupt source data.</b> The tools are read-only by construction. They cannot auto-correct, because correcting requires knowing which of two contradictory fields is wrong, and the data cannot supply that.</li>
       <li><b>Never guess.</b> A confidently wrong unit is worse than no check at all. Units are declared by you and recorded in the report as your declaration.</li>
@@ -291,7 +285,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
 
     <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call, no language model anywhere in the packages. Running the same file twice gives the same answer.</p></details>
     <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check instead, you are choosing to email us the file, and you can ask for it back anonymised or deleted.</p></details>
-    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself you need Python 3.9 or newer and nothing else; the audit engine is standard library only.</p></details>
+    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself, download the binary for your OS from the <a href="downloads.html">downloads page</a> and run it — there is no Python to install and nothing else to configure.</p></details>
     <details><summary>Which product do I need?</summary><p>QC for the daily or monthly export you already have; closeout when the period needs to be locked; <span class="mono">haql-45q</span> if you report carbon capture and storage; <span class="mono">haql-emission</span> if you file a GHG inventory or owe EU ETS allowances; <span class="mono">haql-rrc</span> before a Texas PR filing; <span class="mono">haql-dataroom</span> before an acquisition closes. Units and Coords are free libraries you use from your own code.</p></details>
     <details><summary>Can I try it free?</summary><p>Yes. Email one month of data — anonymised if you prefer — and you get the full report at no cost. Evaluation use of the CLI also needs no license key.</p></details>
     <details><summary>How is it licensed?</summary><p><span class="mono">haql-qc</span>, <span class="mono">haql-closeout</span> and <span class="mono">haql-45q</span> are proprietary: running them commercially requires a license. Licenses are signed ed25519 tokens carrying company, tier, seats and expiry, verified entirely offline against an embedded public key — no activation server, no phone-home. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> are MIT and need no license at all.</p></details>
@@ -308,8 +302,8 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
     <p class="lede">Tell us which field, anonymise it if you need to, and mention anything unusual about how your operator reports — a sign convention, a units quirk, a column that means something other than its name. That context is usually where the real findings hide.</p>
     <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
     <div class="links">
-      <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
-      <div><b>haql-qc</b><a href="https://pypi.org/project/haql-qc/" rel="noopener">pypi.org/project/haql-qc</a></div>
+      <div><b>Downloads</b><a href="downloads.html">haql-lab.github.io/downloads</a></div>
+      <div><b>GitHub</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
     </div>
     <p class="fine">This site is static, hosted free on GitHub Pages. No cookies, no trackers, no analytics, no backend.</p>
   </div>
