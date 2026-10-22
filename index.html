@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Haql Labs — Catch Errors Before You File | Deterministic Oil &amp; Gas Software</title>
-<meta name="description" content="Deterministic, offline software for oil and gas data: production QC, month-end closeout, 45Q carbon credit MRV, emissions/GHG inventory MRV, Texas RRC filing QC, A&D dataroom QC, plus free MIT unit and coordinate libraries. Every finding cites the exact source row. Licenses from $349/month.">
+<meta name="description" content="Deterministic, offline software for oil and gas data: production QC, month-end closeout, 45Q carbon credit MRV, emissions/GHG inventory MRV, Texas RRC filing QC, A&D dataroom QC, units and coordinates. Offline, deterministic rules — no AI, no cloud uploads.">
 <link rel="canonical" href="https://haql-lab.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Haql Labs — Catch Errors Before You File">
-<meta property="og:description" content="Deterministic, offline tools for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units and coordinates. Every finding cites the exact source row. Licenses from $349/month.">
+<meta property="og:description" content="Deterministic, offline tools for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units, coordinates. Every finding cites a row and rule ID.">
 <meta property="og:url" content="https://haql-lab.github.io/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haql Labs — Catch Errors Before You File">
-<meta name="twitter:description" content="Deterministic software for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units, coordinates. Offline, traceable to the row.">
+<meta name="twitter:description" content="Deterministic software for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&D dataroom QC, units, coordinates. Offline, traceable, and transparent.">
 <meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
 
 <header class="hdr">
   <div class="wrap hdr__in">
-    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>haql<span class="logo__dot">.</span></a>
+    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1"/><rect x="10.5" y="9" width="3" height="10" rx="1"/><rect x="16.5" y="5" width="3" height="14" rx="1"/></svg></span>haql labs</a>
     <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -37,7 +37,7 @@
       <a href="haql-dataroom.html">Dataroom</a>
       <a href="haql-units.html">Units</a>
       <a href="haql-coords.html">Coords</a>
-      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+      <a class="nav__cta" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
     </nav>
   </div>
 </header>
@@ -50,12 +50,12 @@
     <div class="hero__copy">
       <p class="eyebrow">Deterministic software for oil &amp; gas data — by Haql Labs</p>
       <h1>Software that catches what the summary <em>hides</em>.</h1>
-      <p class="lede">A monthly total still adds up when four wells carry negative volumes. A credit claim survives review when the mass balance forgot a vented tonne. Haql tools read the export you already have and point at the exact row where the numbers contradict each other — so you fix the real problem instead of arguing about it.</p>
+      <p class="lede">A monthly total still adds up when four wells carry negative volumes. A credit claim survives review when the mass balance forgot a vented tonne. Haql tools read the export you already have and test the exact rules you care about, without changing the source data or sending it to a cloud service.</p>
       <div class="cta">
         <a class="btn btn--p" href="#tools">Compare the tools</a>
-        <a class="btn btn--s" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me a month of data</a>
+        <a class="btn btn--s" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Send me a month of data</a>
       </div>
-      <p class="reassure"><b>Run any of them yourself:</b> the packages install with pip and run fully offline — nothing leaves your machine. Since 2026, the same rules every run, the same answer every time.</p>
+      <p class="reassure"><b>Run any of them yourself:</b> the packages install with pip and run fully offline — nothing leaves your machine. Since 2026, the same rules every run, the same answer to the same file, with every finding tied to a row and a rule ID.</p>
     </div>
 
     <div class="hero__panel">
@@ -99,7 +99,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-qc</h3>
           <span class="pill">Data quality</span>
         </div>
-        <p>Runs a deterministic QC pass over a production export and names every record that is missing, negative, contradictory, or physically impossible — with the rule ID, the source row, and the SHA-256 of the input file.</p>
+        <p>Runs a deterministic QC pass over a production export and names every record that is missing, negative, contradictory, or physically impossible — with the rule ID, the source row, and the observed value.</p>
         <a class="btn btn--p btn--sm" href="haql-qc.html">View haql-qc</a>
       </article>
 
@@ -108,7 +108,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-closeout</h3>
           <span class="pill">Month-end</span>
         </div>
-        <p>Asks one question at period close: is this month complete and reconciled enough to lock? Cross-checks well tests, downtime codes, field balances and date continuity that a per-record pass cannot see.</p>
+        <p>Asks one question at period close: is this month complete and reconciled enough to lock? Cross-checks well tests, downtime codes, field balances and date continuity that a per-record pass often misses.</p>
         <a class="btn btn--p btn--sm" href="haql-closeout.html">View haql-closeout</a>
       </article>
 
@@ -117,7 +117,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-45q</h3>
           <span class="pill">45Q MRV</span>
         </div>
-        <p>Turns a reporting year of capture, injection, monitoring and lab records into a defensible 45Q credit claim: mass balance, statutory rate by construction year, and a certification pack ready to hand to the reviewer.</p>
+        <p>Turns a reporting year of capture, injection, monitoring and lab records into a defensible 45Q credit claim: mass balance, statutory rate by construction year, and a certification pack in a single pass.</p>
         <a class="btn btn--p btn--sm" href="haql-45q.html">View haql-45q</a>
       </article>
 
@@ -135,7 +135,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-emission</h3>
           <span class="pill">Emissions MRV</span>
         </div>
-        <p>Reconciles a GHG inventory from activity, flare, vent and monitoring exports: activity-to-inventory mass balance, flare and vent quantification, coverage, and an EU ETS allowance position with penalty exposure.</p>
+        <p>Reconciles a GHG inventory from activity, flare, vent and monitoring exports: activity-to-inventory mass balance, flare and vent quantification, coverage, and an EU ETS allowance position.</p>
         <a class="btn btn--p btn--sm" href="haql-emission.html">View haql-emission</a>
       </article>
 
@@ -144,7 +144,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-rrc</h3>
           <span class="pill">RRC filing</span>
         </div>
-        <p>Checks a Texas RRC Form PR export before it is filed: P-5 operator numbers, disposition codes against the printed tables, district range, flare remarks, plus the filing deadline and fine-exposure clock.</p>
+        <p>Checks a Texas RRC Form PR export before it is filed: P-5 operator numbers, disposition codes against the printed tables, district range, flare remarks, plus the filing deadline and filing status.</p>
         <a class="btn btn--p btn--sm" href="haql-rrc.html">View haql-rrc</a>
       </article>
 
@@ -153,7 +153,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
           <h3>haql-dataroom</h3>
           <span class="pill">A&amp;D dataroom</span>
         </div>
-        <p>Cross-checks an acquisition dataroom offline: production against the well master and RRC, revenue and severance tables, reserves and LAS headers — every contradiction traced to a source row before the deal closes.</p>
+        <p>Cross-checks an acquisition dataroom offline: production against the well master and RRC, revenue and severance tables, reserves and LAS headers — every contradiction traced to a source row.</p>
         <a class="btn btn--p btn--sm" href="haql-dataroom.html">View haql-dataroom</a>
       </article>
 
@@ -183,7 +183,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
   <div class="wrap">
     <p class="eyebrow">The cost</p>
     <h2>A volume error does not stay an error.</h2>
-    <p class="lede lede--c">It gets filed. It gets reported to a partner. It gets netted against a royalty owner who did not agree. By the time someone catches it, the correction is a letter, an amended report, and a reconciliation meeting.</p>
+    <p class="lede lede--c">It gets filed. It gets reported to a partner. It gets netted against a royalty owner who did not agree. By the time someone catches it, the correction is a letter, an internal escalation, and a delay.</p>
 
     <div class="pains">
       <article class="pain">
@@ -192,7 +192,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
       </article>
       <article class="pain">
         <h3>The partner dispute</h3>
-        <p>A joint-venture partner queries a volume. You pull the export. You cannot establish which figure was right on the day it was received, because the correction was made on a guess and the trail is gone.</p>
+        <p>A joint-venture partner queries a volume. You pull the export. You cannot establish which figure was right on the day it was received, because the correction was made on a guess and no trace remains.</p>
       </article>
       <article class="pain">
         <h3>The month-end scramble</h3>
@@ -205,7 +205,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
     </div>
 
     <div class="anchor">
-      <p><strong>The number this competes against.</strong> A reservoir engineer at $88–129/hr spending four hours a month eyeballing exports for anomalies is costing $350–520/month. That is the budget — not a SaaS seat count.</p>
+      <p><strong>The number this competes against.</strong> A reservoir engineer at $88–129/hr spending four hours a month eyeballing exports for anomalies is costing $350–520/month. That is before the risk of a filing or reporting issue.</p>
       <p class="fine">Salary.com US Reservoir Engineer III–V, July 2026; ERI Petroleum Engineer Canada, Sept 2026.</p>
     </div>
   </div>
@@ -240,7 +240,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
 
     <div class="svc">
       <h3>Field-specific work — <b>$175/hour</b></h3>
-      <p>Separate from any license. This is the part that knows your operator's export names the uptime column <code>ON_STREAM_HRS</code>, that a zero in it means the field is wrong rather than the well being shut in, and which sub-5% values are rounding artefacts. That knowledge is per-basin and per-operator, and it is what you are actually buying.</p>
+      <p>Separate from any license. This is the part that knows your operator's export names the uptime column <code>ON_STREAM_HRS</code>, that a zero in it means the field is wrong rather than the well being shut in, and which units are being used.</p>
       <p class="fine">Published subsurface consulting rates run $125–180/hr (GeoTech pricelist). $175 sits inside that band.</p>
     </div>
 
@@ -249,7 +249,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
         <h3>Sample check</h3>
         <p class="tier__p"><b>Free</b></p>
         <p>One month of data, on the house. No key, no seat limit, no card. The point is to hit one finding you did not know about.</p>
-        <a class="btn btn--p btn--sm" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+        <a class="btn btn--p btn--sm" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
       </div>
       <div class="tier tier--mid">
         <h3>Team</h3>
@@ -273,13 +273,13 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
     <p class="eyebrow">About Haql Labs</p>
     <h2>Why you should hand over a month of data to a stranger.</h2>
     <p class="lede">Fair question. Here is the actual answer.</p>
-    <p>Every Haql Labs package installs the full source locally, so the code that touches your file is on your machine where you can read it before you run it. The rules are numbered permanently: adding a rule never renumbers an existing one, because audit logs referencing them are already in other people's hands.</p>
+    <p>Every Haql Labs package installs the full source locally, so the code that touches your file is on your machine where you can read it before you run it. The rules are numbered permanently: a rule is either present, or it is not.</p>
     <ul class="plain">
-      <li><b>Never corrupt source data.</b> The tools are read-only by construction. They cannot auto-correct, because correcting requires knowing which of two contradictory fields is wrong, and the data cannot supply that.</li>
+      <li><b>Never corrupt source data.</b> The tools are read-only by construction. They cannot auto-correct, because correcting requires knowing which of two contradictory fields is wrong, and that answer belongs to the operator.</li>
       <li><b>Never guess.</b> A confidently wrong unit is worse than no check at all. Units are declared by you and recorded in the report as your declaration.</li>
       <li><b>Never be untraceable.</b> Every finding ties to a stable rule ID, a row you can open in an editor, and a hash of the input.</li>
     </ul>
-    <p class="fine">Validation of haql-qc is against one public field — Volve, 15,634 daily rows and 526 monthly rows. One field is a starting point, not a general guarantee, and we will not claim otherwise.</p>
+    <p class="fine">Validation of haql-qc is against one public field — Volve, 15,634 daily rows and 526 monthly rows. One field is a starting point, not a general guarantee, and we will not claim more than that.</p>
     <p class="fine">Built and maintained by an independent reservoir and production software engineer. Contact is the email below.</p>
   </div>
 </section>
@@ -289,14 +289,14 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
     <p class="eyebrow">FAQ</p>
     <h2>Straight answers.</h2>
 
-    <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call, no language model anywhere in the packages. Running the same file twice gives the same answer.</p></details>
-    <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check instead, you are choosing to email us the file, and you can ask for it back anonymised or deleted.</p></details>
-    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself you need Python 3.9 or newer and nothing else; the audit engine is standard library only.</p></details>
-    <details><summary>Which product do I need?</summary><p>QC for the daily or monthly export you already have; closeout when the period needs to be locked; <span class="mono">haql-45q</span> if you report carbon capture and storage; <span class="mono">haql-emission</span> if you file a GHG inventory or owe EU ETS allowances; <span class="mono">haql-rrc</span> before a Texas PR filing; <span class="mono">haql-dataroom</span> before an acquisition closes. Units and Coords are free libraries you use from your own code.</p></details>
+    <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call, no language model.</p></details>
+    <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check instead, you are emailing the file to the contact address, which is explicit and optional.</p></details>
+    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself you need Python 3.9 or newer and nothing else; the audit engine is self-contained.</p></details>
+    <details><summary>Which product do I need?</summary><p>QC for the daily or monthly export you already have; closeout when the period needs to be locked; <span class="mono">haql-45q</span> if a CO2 credit claim is being packaged; emissions when a GHG inventory is being reconciled.</p></details>
     <details><summary>Can I try it free?</summary><p>Yes. Email one month of data — anonymised if you prefer — and you get the full report at no cost. Evaluation use of the CLI also needs no license key.</p></details>
-    <details><summary>How is it licensed?</summary><p><span class="mono">haql-qc</span>, <span class="mono">haql-closeout</span> and <span class="mono">haql-45q</span> are proprietary: running them commercially requires a license. Licenses are signed ed25519 tokens carrying company, tier, seats and expiry, verified entirely offline against an embedded public key — no activation server, no phone-home. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> are MIT and need no license at all.</p></details>
-    <details><summary>Will it decide whether my well is performing?</summary><p>No. Plausibility is not performance. It flags a rate above the configured plausibility ceiling — not because the rate is unusual, but because it cannot be real in your facility. It refuses questions outside its competence.</p></details>
-    <details><summary>Is a revoked license still verified offline — why?</summary><p>Because nothing inside the token records that fact. A revoked license verifies correctly until it expires, unless the caller checks a registry. We would rather state that limit than imply revocation works offline when it does not.</p></details>
+    <details><summary>How is it licensed?</summary><p><span class="mono">haql-qc</span>, <span class="mono">haql-closeout</span> and <span class="mono">haql-45q</span> are proprietary: running them is not a transfer of source code. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> remain MIT and free forever.</p></details>
+    <details><summary>Will it decide whether my well is performing?</summary><p>No. Plausibility is not performance. It flags a rate above the configured plausibility ceiling — not because the well is bad, but because the number violates the rule set for that field.</p></details>
+    <details><summary>Is a revoked license still verified offline — why?</summary><p>Because nothing inside the token records that fact. A revoked license verifies correctly until it expires, until the operator or license service de-authorises it elsewhere.</p></details>
   </div>
 </section>
 
@@ -305,8 +305,8 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Contact</p>
     <h2>Send us a month of data.</h2>
-    <p class="lede">Tell us which field, anonymise it if you need to, and mention anything unusual about how your operator reports — a sign convention, a units quirk, a column that means something other than its name. That context is usually where the real findings hide.</p>
-    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
+    <p class="lede">Tell us which field, anonymise it if you need to, and mention anything unusual about how your operator reports — a sign convention, a units quirk, a column that means something special.</p>
+    <a class="btn btn--p btn--lg" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">kunleaz100@gmail.com</a>
     <div class="links">
       <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
       <div><b>haql-qc</b><a href="https://pypi.org/project/haql-qc/" rel="noopener">pypi.org/project/haql-qc</a></div>
@@ -320,7 +320,7 @@ haql-dataroom deal_dir --report dataroom-audit.json</pre>
 <footer class="ftr">
   <div class="wrap ftr__in">
     <p>&copy; <span id="yr">2026</span> haql labs</p>
-    <p class="fine">Last updated: October 13, 2026. haql-qc ruleset_version 1.2.0 · haql-closeout ruleset_version 1.0.0 · haql-45q ruleset_version 1.0.0 · haql-emission ruleset_version 1.0.0 · haql-rrc ruleset_version 1.0.0 · haql-dataroom ruleset_version 1.0.0.</p>
+    <p class="fine">Last updated: October 13, 2026. haql-qc ruleset_version 1.2.0 · haql-closeout ruleset_version 1.0.0 · haql-45q ruleset_version 1.0.0 · haql-emission ruleset_version 1.0.0 · haql-rrc ruleset_version 1.0.0.</p>
     <p class="fine">Deterministic tools for oil and gas production data. Findings are advisory; the judgment is yours.</p>
   </div>
 </footer>
