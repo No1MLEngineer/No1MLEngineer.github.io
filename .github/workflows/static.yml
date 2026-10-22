@@ -31,13 +31,52 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate Pages artifact
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f 404.html
+          test -f assets/css/style.css
+          test -f assets/js/main.js
+          test -f favicon.svg
+
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path('.')
+          required = [
+              root / 'index.html',
+              root / '404.html',
+              root / 'assets' / 'css' / 'style.css',
+              root / 'assets' / 'js' / 'main.js',
+              root / 'favicon.svg',
+          ]
+          missing = [str(p) for p in required if not p.exists()]
+          if missing:
+              raise SystemExit(f'Missing required site artifacts: {missing}')
+
+          html = (root / 'index.html').read_text(encoding='utf-8')
+          required_refs = [
+              'href="assets/css/style.css"',
+              'src="assets/js/main.js"',
+              'href="favicon.svg"',
+          ]
+          missing_refs = [ref for ref in required_refs if ref not in html]
+          if missing_refs:
+              raise SystemExit(f'Index.html missing required asset references: {missing_refs}')
+
+          print('GitHub Pages artifact validation passed.')
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
+          # Upload entire repository root; GitHub Pages serves the resulting static site.
           path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
