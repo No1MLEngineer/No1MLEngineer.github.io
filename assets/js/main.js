@@ -58,8 +58,12 @@
   /* ---------- active nav item ---------- */
   var path = window.location.pathname.split("/").pop() || "index.html";
   Array.prototype.forEach.call(document.querySelectorAll(".nav a[href]"), function (a) {
-    var target = (a.getAttribute("href") || "").split("/").pop().split("#")[0];
-    if (target && target === path) a.setAttribute("aria-current", "page");
+    var href = a.getAttribute("href") || "";
+    var target = href.split("/").pop().split("#")[0];
+    var hash = href.indexOf("#") > -1 ? "#" + href.split("#")[1] : "";
+    if (target === path && (!hash || hash === window.location.hash)) {
+      a.setAttribute("aria-current", "page");
+    }
   });
   var menuSummary = document.querySelector(".menu > summary");
   if (menuSummary && document.querySelector(".menu__item[aria-current]")) {

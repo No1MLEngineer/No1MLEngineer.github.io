@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://haql-lab.github.io/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-23</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -54,5 +54,10 @@
     <loc>https://haql-lab.github.io/downloads.html</loc>
     <lastmod>2026-10-17</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://haql-lab.github.io/credits.html</loc>
+    <lastmod>2026-10-23</lastmod>
+    <priority>0.2</priority>
   </url>
 </urlset>

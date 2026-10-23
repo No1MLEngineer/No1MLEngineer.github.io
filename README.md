@@ -14,6 +14,13 @@ One page per product:
 - `haql-dataroom.html` — A&D dataroom cross-check (production vs well master/RRC, revenue, severance, reserves, LAS)
 - `haql-units.html` — field-to-SI unit conversions (MIT)
 - `haql-coords.html` — minimum curvature, DLS, UTM/WGS84 (MIT)
+- `credits.html` — image credits and licenses for the field photography
+
+## Photography
+The homepage uses self-hosted field photography under public-domain, CC0 and
+CC BY 2.0 licenses. Images are illustrative and do not depict customer assets
+or customer locations. Full attribution is on `credits.html`. The site makes no
+third-party network requests at runtime.
 
 ## Run locally
 ```bash
