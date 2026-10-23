@@ -2084,6 +2084,12 @@ section[id] {
   .hero__panel {
     box-shadow: none;
   }
+  /* Printing does not scroll, so the IntersectionObserver never reveals
+     below-the-fold content. Force it visible in the printed page. */
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .mb-4 {
