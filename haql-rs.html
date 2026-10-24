@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>haql-rs — Reservoir Forecasts in Seconds, From Your Eclipse Deck | Haql Labs</title>
-<meta name="description" content="haql-rs runs two-phase black-oil reservoir forecasts in ~35 seconds on a laptop, straight from your Eclipse deck. Injector pressure matches the reference; producer pressure within 2.3%. Offline, deterministic, fixed-fee pilot available.">
+<title>haql-rs — Three-Phase Black-Oil, Validated Against OPM Flow | Haql Labs</title>
+<meta name="description" content="haql-rs is a three-phase black-oil reservoir simulator validated end-to-end against OPM Flow on SPE1 CASE1: 9 years, cumulative oil within 3.1%, mass balance 4.6e-7. Readable source, deterministic, every number reproducible.">
 <link rel="canonical" href="https://haql-lab.github.io/haql-rs.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="haql-rs — Reservoir Forecasts in Seconds">
-<meta property="og:description" content="Two-phase black-oil forecasts in ~35 seconds on a laptop, from your Eclipse deck. Offline, deterministic, honestly benchmarked.">
+<meta property="og:title" content="haql-rs — Three-Phase Black-Oil, Validated Against OPM Flow">
+<meta property="og:description" content="Three-phase black-oil, validated against OPM Flow on SPE1. 3.1% on cumulative oil over 9 years, mass balance 4.6e-7, every number reproducible from the committed run.">
 <meta property="og:url" content="https://haql-lab.github.io/haql-rs.html">
 <meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -28,7 +28,7 @@
       <a href="haql-qc.html">QC</a>
       <a href="haql-closeout.html">Closeout</a>
       <a href="haql-45q.html">45Q</a>
-      <a href="haql-rs.html">RS</a>
+      <a href="haql-rs.html" aria-current="page">RS</a>
       <a href="haql-emission.html">Emission</a>
       <a href="haql-rrc.html">RRC</a>
       <a href="haql-dataroom.html">Dataroom</a>
@@ -46,28 +46,27 @@
   <div class="wrap hero__in">
     <div class="hero__copy">
       <p class="eyebrow">haql-rs · Reservoir simulation</p>
-      <h1>The forecast is ready <em>before the cluster queue starts it.</em></h1>
-      <p class="lede">A two-phase black-oil forecast in about 35 seconds, on a laptop, straight from the Eclipse deck you already have. No license server, no cluster allocation, no queue. Ask what happens if the injector rate doubles, and have the answer before the meeting moves on.</p>
+      <h1>Nine years of SPE1, checked line by line <em>against OPM Flow.</em></h1>
+      <p class="lede">A three-phase black-oil simulator in about two thousand lines of readable Python. Fully implicit, Newton with an exact Jacobian, Peaceman wells, gravity, real SPE1 PVT and relative-permeability tables. It is not faster than a commercial simulator — it is built so its numbers can be checked.</p>
       <div class="cta">
-        <a class="btn btn--p" href="#pilot">The $50k pilot</a>
-        <a class="btn btn--s" href="#leverage">Why companies switch</a>
+        <a class="btn btn--p" href="#numbers">See the numbers</a>
+        <a class="btn btn--s" href="#limits">What it does not do</a>
       </div>
-      <p class="reassure"><b>Deterministic:</b> the same deck and flags produce the same forecast, every run — seeded, reproducible, checkable.</p>
+      <p class="reassure"><b>Deterministic:</b> the same deck and the same flags produce the same forecast, bit for bit, every run.</p>
     </div>
 
     <div class="hero__panel">
-      <div class="panel__bar"><span class="dot"></span>one command</div>
-      <pre class="panel__body"><span class="c"># your Eclipse deck, unchanged</span>
-haql-rs run --from-eclipse field.DATA -e 50
+      <div class="panel__bar"><span class="dot"></span>the whole run</div>
+      <pre class="panel__body"><span class="c"># 3,285 days, fully implicit, 143 steps</span>
+python3 run_spe1.py --T 3285 --strict --json out.json
+python3 compare_spe1.py --run out.json
 
-<span class="c"># result (t=100 days, vs finite-difference reference)</span>
-  Injector   <span class="g">4800 psi</span>   ref 4801 psi   <span class="g">match</span>
-  Producer   <span class="y">3751 psi</span>   ref 3840 psi   <span class="y">-2.3%</span>
-
-<span class="c"># a what-if, seconds later</span>
-haql-rs run --from-eclipse field.DATA \
-  --inj 20000 -e 50</pre>
-      <p class="panel__cap">Measured numbers from our own benchmark runs, published below with the misses included — including the 3.6-point gas saturation gap we have not closed yet.</p>
+<span class="c"># vs OPM Flow 2024.10, SPE1 CASE1</span>
+  FOPT   ref 4.3757e+07   ours 4.5129e+07   <span class="y">max 3.14%</span>
+  FGOR   ref 18.667       ours 15.215       <span class="y">max 18.5%</span>
+  BPR    ref 3240.4       ours 3280.7       <span class="g">max 3.20%</span>
+  mass balance (oil)                        <span class="g">-4.59e-07</span></pre>
+      <p class="panel__cap">Real output from the committed run. The gas-oil ratio is the weak number and it is shown here, not buried.</p>
     </div>
   </div>
 </section>
@@ -76,48 +75,47 @@ haql-rs run --from-eclipse field.DATA \
 <section class="sec" id="what">
   <div class="wrap">
     <p class="eyebrow">What it is</p>
-    <h2>A fast screening simulator that reads Eclipse and speaks plain numbers.</h2>
-    <p class="lede lede--c">2D two-phase black-oil (oil + gas, SPE-1/PUNQ fluids, Peaceman wells), single-phase validation path, heterogeneous permeability maps, production-data fitting. One small binary, one CPU thread, fully offline.</p>
+    <h2>A black-oil simulator small enough to audit.</h2>
+    <p class="lede lede--c">Three-phase black oil (oil, water, gas), finite-volume TPFA on a Cartesian grid, fully implicit time stepping, Newton with a coloured Jacobian verified against dense finite differences. SPE1's own PVTO, PVDG, PVTW, SWOF and SGOF tables, rock compressibility, gravity, and Peaceman wells with rate control that switches to bottom-hole-pressure control when the limit binds. No framework, no licence server, no GPU — NumPy and SciPy.</p>
     <div class="io">
       <div class="io__b">
         <h4>Goes in</h4>
-        <p>Your Eclipse deck (.DATA) or a handful of flags — permeability, porosity, rates, well positions. FIELD and METRIC decks; 43-point integration suite guards the import.</p>
+        <p>A simple Cartesian Eclipse deck — <code>DIMENS</code>, <code>DX/DY/DZ</code>, <code>PERMX/Y/Z</code>, <code>PORO</code>, <code>TOPS</code> — plus the PVT and saturation tables. FIELD units throughout. Corner-point geometry, faults and <code>ACTNUM</code> are not supported yet, and the page says so rather than guessing.</p>
       </div>
       <div class="io__b">
         <h4>Comes out</h4>
-        <p>Well pressures and gas saturation at 100 days, full-field CSV grids, and an evaluation report with in-place volumes and a material-balance error computed from the outputs — not hidden inside a loss function.</p>
+        <p>Pressure and saturation per cell per timestep, well rates and bottom-hole pressures, cumulative production, and a material-balance ledger computed from the solution itself — not from the residual. A truncated run is refused rather than reported.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY YOU NEED IT / LEVERAGE ============ -->
+<!-- ============ WHY IT EXISTS ============ -->
 <section class="sec sec--alt" id="leverage">
   <div class="wrap">
-    <p class="eyebrow">Why companies need it</p>
-    <h2>Every current simulator taxes you three times. haql-rs charges none of them.</h2>
-    <p class="lede lede--c">Eclipse, CMG, tNavigator and their peers are excellent at what they do. They also all impose the same three costs — and those costs, not accuracy, are what haql-rs removes.</p>
+    <p class="eyebrow">Why it exists</p>
+    <h2>A second opinion you can actually open.</h2>
+    <p class="lede lede--c">OPM Flow and the commercial simulators are better than this on every axis that matters for production work — speed, physics, robustness, grid complexity. This engine exists for the questions those tools cannot answer by construction.</p>
     <div class="pains">
       <article class="pain">
-        <h3>The license-server tax</h3>
-        <p>A commercial seat costs roughly a junior engineer's salary every year, needs a license server, and stops working the day the paperwork lapses — including in the field office and on the rig, where the questions actually arise. haql-rs is one small binary with an offline hardware-bound key. It runs where the work is.</p>
+        <h3>When the number is challenged</h3>
+        <p>A forecast is queried by a partner, a lender or a regulator. With a commercial simulator the answer is "the vendor's solver said so". Here the answer is a committed run, a pinned deck, a checksum, and two thousand lines anyone can read.</p>
       </article>
       <article class="pain">
-        <h3>The cluster-queue tax</h3>
-        <p>A history-match loop on a sector model means rebuild the deck, submit to the cluster, wait in queue — thirty minutes to hours per iteration, dozens of iterations per match. haql-rs closes the same loop in 35 seconds on a laptop. Five what-ifs finish in the time one cluster job takes to start.</p>
+        <h3>When the solver is the suspect</h3>
+        <p>If two simulators disagree, which one is wrong? An independent implementation, written from the equations rather than from a shared codebase, is the only way to find out. That is what this is for.</p>
       </article>
       <article class="pain">
-        <h3>The seat-count tax</h3>
-        <p>Per-seat pricing means only three people in a fifteen-engineer asset team can afford to touch the model. haql-rs site pricing covers the whole team, so the engineer with the question runs the case instead of filing a request with the engineer holding the license.</p>
+        <h3>When there is no licence to spare</h3>
+        <p>A seat costs tens of thousands a year and stops working when the paperwork lapses. This runs on a two-core laptop with no licence server — useful in a field office, a classroom, or a regulator's desk.</p>
       </article>
       <article class="pain">
-        <h3>The black-box tax</h3>
-        <p>When a commercial run looks wrong, you get a number and no explanation. haql-rs ships its own finite-difference reference and a validate command that prints pass and fail side by side — including the failures. The producer gas saturation misses by 3.6 points, and that fact is on this page, not buried.</p>
+        <h3>When the answer has to be reproducible</h3>
+        <p>Same deck, same flags, same bits, five years from now. The driver records the tolerance it used and refuses to compare a truncated run. Reproducibility is a gate here, not a promise.</p>
       </article>
     </div>
     <div class="anchor">
-      <p><strong>The number this competes against.</strong> A commercial seat at roughly $30–60k/year against a screening seat at roughly $2k/month; a consulting simulation study at $1–3k/day against a 35-second run. The subscription is priced against the hours and seats you already pay for, not against a feature checklist.</p>
-      <p class="fine">Industry license bands and consulting day rates, 2025–2026. Your mileage varies by basin and vendor contract — ask us for the comparison against your actual renewal quote.</p>
+      <p><strong>What it is not.</strong> It is not a replacement for Eclipse, CMG, tNavigator or OPM Flow, and it is not faster than them. On SPE1 it is roughly ten times slower than OPM Flow at its loosest setting and far slower at the tolerance needed to pass its own mass-balance gate. Anyone selling you a from-scratch simulator as a speed upgrade is selling you something else.</p>
     </div>
   </div>
 </section>
@@ -126,14 +124,34 @@ haql-rs run --from-eclipse field.DATA \
 <section class="sec" id="numbers">
   <div class="wrap">
     <p class="eyebrow">Measured, not claimed</p>
-    <h2>The full scorecard, misses included.</h2>
+    <h2>SPE1 CASE1, nine years, against OPM Flow 2024.10.</h2>
     <div class="stats">
-      <div class="stat"><b>4800</b><span>injector psi vs 4801 reference — match</span></div>
-      <div class="stat"><b>3751</b><span>producer psi vs 3840 reference — −2.3%</span></div>
-      <div class="stat"><b>5.0%</b><span>producer gas saturation vs 8.6% — 3.6pp gap, open work</span></div>
-      <div class="stat"><b>35s</b><span>full two-phase run, 50 epochs, one CPU thread</span></div>
+      <div class="stat"><b>3.14%</b><span>max error on cumulative oil at 3,285 days</span></div>
+      <div class="stat"><b>4.6e-7</b><span>oil material balance over the full run (gate 1e-6)</span></div>
+      <div class="stat"><b>143</b><span>timesteps for nine years, fully implicit</span></div>
+      <div class="stat"><b>6–10 min</b><span>full run, two CPU cores, no GPU</span></div>
     </div>
-    <p class="fine">Two-phase SPE-1 waterflood at 100 days, deterministic seed, finite-difference reference on a 51×51 grid. Single-phase path: 38.9 psi RMSE at 100 epochs. Producer 3840 psi reproduces exactly when the producer target is pinned explicitly. Gas saturation is a pinned constant today — the one validated-accuracy gap that matters, and the first item on the roadmap.</p>
+
+    <div class="io" style="margin-top:2rem">
+      <div class="io__b">
+        <h4>Every vector, including the misses</h4>
+        <p><b>FOPT</b> 4.3757e+07 vs 4.5129e+07 — 1.57% RMS, 3.14% max<br>
+           <b>FOPR</b> 6255.1 vs 7173.5 — 6.16% RMS, 14.7% max<br>
+           <b>FGOR</b> 18.667 vs 15.215 — 7.93% RMS, <b>18.5% max</b><br>
+           <b>WBHP</b> producer — 3.63% RMS, 20.1% max<br>
+           <b>BPR</b> injector block — 3.50% RMS, 4.94% max<br>
+           <b>BPR</b> producer block — 1.70% RMS, 3.20% max</p>
+      </div>
+      <div class="io__b">
+        <h4>Material balance, all three phases</h4>
+        <p><b>Oil</b> −4.59e-07<br>
+           <b>Water</b> +4.6e-14<br>
+           <b>Gas</b> +2.99e-07<br>
+           Gate: 1e-6. Every step adds the signed well term the residual actually used, and the identity is checked continuously.</p>
+      </div>
+    </div>
+
+    <p class="fine"><b>This does not meet the project's own pre-registered accuracy gate</b> (1 psi on pressure, 1e-3 on saturation). It is a 3% match on cumulative oil over nine years, and the gap is largest late in the run, where the producer is bottom-hole-pressure constrained and the gas-oil ratio diverges — exactly where relative permeability and the rate-to-BHP switch matter most. The reference is OPM Flow 2024.10, sha256-pinned, run on the same two-core laptop and step-capped at 30 days. The committed output is in the repository, so the comparison can be re-run without re-running the solver.</p>
   </div>
 </section>
 
@@ -141,12 +159,14 @@ haql-rs run --from-eclipse field.DATA \
 <section class="sec sec--alt" id="limits">
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Honest limits</p>
-    <h2>What it is not — yet.</h2>
+    <h2>What it does not do.</h2>
     <ul class="plain">
-      <li><b>Not a GOR forecaster.</b> Until the gas-saturation gap closes, do not size separators or split revenue on its gas numbers. Pressure-driven decisions are the validated use.</li>
-      <li><b>No BHP-controlled wells.</b> Rate control only; BHP limits in imported decks are reported as ignored, not silently applied.</li>
-      <li><b>2D areal.</b> Sector screening and pattern floods, not full-field 3D development planning.</li>
-      <li><b>Validated on benchmarks, not your field — yet.</b> Which is exactly what the pilot below is for.</li>
+      <li><b>Not a speed upgrade.</b> Slower than OPM Flow and much slower than a commercial simulator. If speed is your problem, buy one of those.</li>
+      <li><b>The gas rate is the weak number.</b> 18.5% maximum error on producing gas-oil ratio late in SPE1. Do not size separators or split revenue on this engine's gas numbers.</li>
+      <li><b>Cartesian grids only.</b> No corner-point geometry, no faults, no <code>ACTNUM</code>, no local grid refinement. Simple <code>DIMENS/DX/DY/DZ</code> decks.</li>
+      <li><b>No capillary pressure, no compositional model, no thermal.</b> Black oil with the deck's own tables.</li>
+      <li><b>Fixed-rate injection.</b> The gas injector is modelled as a prescribed source rather than a BHP-unknown well.</li>
+      <li><b>Validated on a published benchmark, not on your field.</b> That is what the pilot below is for.</li>
     </ul>
   </div>
 </section>
@@ -158,10 +178,10 @@ haql-rs run --from-eclipse field.DATA \
     <h2>$50k fixed. Your field. Blind forecast. Pass or fail in writing.</h2>
     <p class="lede lede--c">Nobody should buy reservoir software on benchmarks — the industry was burned that way. So the pilot replaces our accuracy claims with your own production data.</p>
     <ol class="flow">
-      <li><b>Ingest</b><span>Weeks 1–2: your deck running in haql-rs, Eclipse-parity check, discrepancy list.</span></li>
+      <li><b>Ingest</b><span>Weeks 1–2: your deck running in haql-rs, a comparison against your incumbent simulator, and a written discrepancy list.</span></li>
       <li><b>Match</b><span>Weeks 3–6: history-match the first 9 months with your engineer watching every iteration.</span></li>
       <li><b>Blind forecast</b><span>Weeks 7–10: predict months 10–12, never seen by us, scored against actuals.</span></li>
-      <li><b>Verdict</b><span>Weeks 11–12: pass opens the license conversation; fail gets you a full written failure analysis.</span></li>
+      <li><b>Verdict</b><span>Weeks 11–12: pass opens the licence conversation; fail gets you a full written failure analysis.</span></li>
     </ol>
     <div class="tiers">
       <div class="tier">
@@ -192,11 +212,11 @@ haql-rs run --from-eclipse field.DATA \
   <div class="wrap wrap--narrow">
     <p class="eyebrow">FAQ</p>
     <h2>Straight answers.</h2>
-    <details><summary>Does it replace Eclipse or CMG?</summary><p>No. It replaces the cluster queue in front of them. Screen five scenarios in haql-rs in three minutes, then run the winner in full physics. It is a screening tool with validated pressure accuracy, not a replacement simulator.</p></details>
-    <details><summary>Why should I trust a 35-second forecast?</summary><p>Because we publish the misses: the full scorecard above, the 3.6-point gas gap, and a validate command that prints pass and fail against its own reference. And because the pilot lets you test it on your field before paying for a license.</p></details>
-    <details><summary>What do I need to run it?</summary><p>One small binary, one CPU thread, no GPU, no cluster, no license server. Your Eclipse deck goes in unchanged. It runs fully offline, including air-gapped networks.</p></details>
-    <details><summary>Is my data sent anywhere?</summary><p>No. The binary makes no network calls. Like every Haql Labs tool, it runs where the data already is.</p></details>
-    <details><summary>What about the gas saturation gap?</summary><p>It is real, measured, and first on the roadmap: producer gas saturation reads 5.0% against an 8.6% reference. Until it closes, make pressure-driven decisions with haql-rs and keep gas-rate-critical work on your incumbent.</p></details>
+    <details><summary>Does it replace Eclipse, CMG or OPM Flow?</summary><p>No. It is slower and covers less physics. It exists to cross-check them, to be read, and to run where a licence cannot go.</p></details>
+    <details><summary>Why should I trust a 3% match?</summary><p>You should not trust it as a production forecast. You should trust it as an independent implementation: the deck is pinned, the reference is pinned, the run is committed, the Jacobian is verified against dense finite differences, and the mass balance is checked every step. The misses are printed on this page, including the 18.5% gas-oil ratio error.</p></details>
+    <details><summary>What do I need to run it?</summary><p>Python, NumPy and SciPy. Two CPU cores, no GPU, no cluster, no licence server. It runs fully offline.</p></details>
+    <details><summary>Can it read my field deck?</summary><p>Only if it is a simple Cartesian deck using <code>DIMENS</code>, <code>DX/DY/DZ</code>, <code>PERMX/Y/Z</code>, <code>PORO</code> and <code>TOPS</code>. Corner-point geometry, faults and <code>ACTNUM</code> are not supported yet. Ask before assuming.</p></details>
+    <details><summary>What about the gas-oil ratio gap?</summary><p>It is real, measured, and stated in full: 18.5% maximum error late in SPE1, where the producer is BHP-constrained and the rate-to-pressure switch dominates. Until it closes, treat the engine as a pressure-and-cumulative-oil cross-check, not a gas forecaster.</p></details>
   </div>
 </section>
 
@@ -205,7 +225,7 @@ haql-rs run --from-eclipse field.DATA \
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Contact</p>
     <h2>Start with a 15-minute call.</h2>
-    <p class="lede">Tell us your asset, your simulator, and where the queue hurts. If the pilot fits, you'll have a fixed price and success criteria within a week.</p>
+    <p class="lede">Tell us your asset, your simulator, and the number you do not trust. If the pilot fits, you'll have a fixed price and success criteria within a week.</p>
     <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=haql-rs%20pilot%20enquiry">no1mlengineer234@gmail.com</a>
     <div class="links">
       <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
@@ -218,7 +238,7 @@ haql-rs run --from-eclipse field.DATA \
 <footer class="ftr">
   <div class="wrap ftr__in">
     <p>&copy; <span id="yr">2026</span> haql labs</p>
-    <p class="fine">Last updated: October 2026. Numbers on this page are measured benchmark outputs; the gas-saturation gap is open work. Findings are advisory; the judgment is yours.</p>
+    <p class="fine">Last updated: October 2026. Numbers on this page are measured benchmark outputs from a committed run; the gas-oil ratio gap is open work. Findings are advisory; the judgment is yours.</p>
   </div>
 </footer>
 
