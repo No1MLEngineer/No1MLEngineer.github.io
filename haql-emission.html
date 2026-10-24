@@ -3,16 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>haql-emission — Reconcile a GHG Inventory and Price the Allowance Position | Haql Labs</title>
-<meta name="description" content="haql-emission turns activity, flare, vent and monitoring exports into a defensible GHG inventory: activity-to-inventory mass balance, flare and vent quantification, month and quarter coverage, and an EU ETS allowance position with penalty exposure. Runs offline.">
+<title>haql-emission — GHG & EU ETS reconciliation | Haql Labs</title>
+<meta name="description" content="Reconcile a GHG inventory from activity, flare, vent and monitoring exports: mass balance, flare and vent quantification, coverage and an EU ETS allowance position.">
 <link rel="canonical" href="https://haql-lab.github.io/haql-emission.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="haql-emission — A Reported Total Is Not a Balance">
 <meta property="og:description" content="Activity-to-inventory mass balance, flare and vent quantification, coverage and an EU ETS allowance position — built to survive review, not just to add up.">
 <meta property="og:url" content="https://haql-lab.github.io/haql-emission.html">
-<meta name="theme-color" content="#0b0f14" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c100f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:site_name" content="Haql Labs">
+<meta property="og:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Haql Labs — deterministic, offline software for oil and gas data">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="haql-emission — A Reported Total Is Not a Balance">
+<meta name="twitter:description" content="Activity-to-inventory mass balance, flare and vent quantification, coverage and an EU ETS allowance position — built to survive review, not just to add up.">
+<meta name="twitter:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Haql Labs",
+  "url": "https://haql-lab.github.io/",
+  "logo": "https://haql-lab.github.io/assets/img/icon-512.png",
+  "email": "no1mlengineer234@gmail.com",
+  "description": "Haql Labs builds deterministic, offline software for oil and gas production data.",
+  "sameAs": ["https://github.com/haql-lab"]
+}
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -20,21 +46,34 @@
 
 <header class="hdr">
   <div class="wrap hdr__in">
-    <a class="logo" href="index.html"><span class="logo__mar" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>haql<span class="logo__dot">.</span></a>
-    <button class="burger" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+    <a class="brand" href="index.html" aria-label="Haql Labs — home">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>
+      <span class="brand__word">haql<span class="brand__lab">Labs</span></span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="haql-qc.html">QC</a>
-      <a href="haql-closeout.html">Closeout</a>
-      <a href="haql-45q.html">45Q</a>
-      <a href="haql-rs.html">RS</a>
-      <a href="haql-emission.html">Emission</a>
-      <a href="haql-rrc.html">RRC</a>
-      <a href="haql-dataroom.html">Dataroom</a>
-      <a href="haql-units.html">Units</a>
-      <a href="haql-coords.html">Coords</a>
-      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+      <details class="menu">
+        <summary>Products</summary>
+        <div class="menu__panel">
+          <a class="menu__item" href="haql-qc.html"><b>haql-qc</b><span>Production data quality</span></a>
+          <a class="menu__item" href="haql-closeout.html"><b>haql-closeout</b><span>Month-end closeout</span></a>
+          <a class="menu__item" href="haql-45q.html"><b>haql-45q</b><span>45Q credit claims</span></a>
+          <a class="menu__item" href="haql-emission.html"><b>haql-emission</b><span>GHG &amp; EU ETS MRV</span></a>
+          <a class="menu__item" href="haql-rrc.html"><b>haql-rrc</b><span>Texas RRC Form PR</span></a>
+          <a class="menu__item" href="haql-dataroom.html"><b>haql-dataroom</b><span>A&amp;D dataroom QC</span></a>
+          <a class="menu__item" href="haql-engine.html"><b>haql-engine</b><span>Simulation audit</span></a>
+          <a class="menu__item" href="haql-units.html"><b>haql-units</b><span>Unit conversions · MIT</span></a>
+          <a class="menu__item" href="haql-coords.html"><b>haql-coords</b><span>Wellbore math · MIT</span></a>
+          <a class="menu__all" href="index.html#tools">All nine tools →</a>
+        </div>
+      </details>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="downloads.html">Downloads</a>
+      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Request a sample</a>
     </nav>
   </div>
 </header>
@@ -52,12 +91,12 @@
         <a class="btn btn--p" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me a year — free check</a>
         <a class="btn btn--s" href="#catch">See what it catches</a>
       </div>
-      <p class="reassure"><b>Run it yourself:</b> <code class="mono">pip install haql-emission</code> — a directory in, an emissions pack out. Fully offline, deterministic, same rules every run.</p>
+      <p class="reassure"><b>Run it yourself:</b> <a href="downloads.html">download the standalone binary</a> — a directory in, an emissions pack out. Fully offline, deterministic, same rules every run.</p>
     </div>
 
     <div class="hero__panel">
       <div class="panel__bar"><span class="dot"></span>one command, one reporting year</div>
-      <pre class="panel__body"><span class="c"># generate a synthetic facility (12 months, planted gaps)</span>
+      <pre class="panel__body" tabindex="0" aria-label="Example report output"><span class="c"># generate a synthetic facility (12 months, planted gaps)</span>
 haql-emission demo
 
 <span class="c"># reconcile the year and price the allowance position</span>
@@ -200,7 +239,7 @@ haql-emission demo_emission --no-open -o emissions-pack
     <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
     <div class="links">
       <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
-      <div><b>haql-qc</b><a href="https://pypi.org/project/haql-qc/" rel="noopener">pypi.org/project/haql-qc</a></div>
+      <div><b>Downloads</b><a href="downloads.html">haql-lab.github.io/downloads</a></div>
     </div>
   </div>
 </section>
@@ -208,10 +247,52 @@ haql-emission demo_emission --no-open -o emissions-pack
 </main>
 
 <footer class="ftr">
-  <div class="wrap ftr__in">
-    <p>&copy; <span id="yr">2026</span> haql labs</p>
-    <p class="fine">haql-emission ruleset_version 1.0.0 · Last updated: October 13, 2026.</p>
-    <p class="fine">Deterministic tools for oil and gas production data. Findings are advisory; the judgment is yours.</p>
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <a class="brand" href="index.html" aria-label="Haql Labs — home">
+          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>
+          <span class="brand__word">haql<span class="brand__lab">Labs</span></span>
+        </a>
+        <p>Deterministic, offline software for oil and gas production data. Every finding cites the rule, the source row and the input hash. Findings are advisory; the judgment is yours.</p>
+      </div>
+      <div class="ftr__col">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="haql-qc.html">haql-qc</a></li>
+          <li><a href="haql-closeout.html">haql-closeout</a></li>
+          <li><a href="haql-45q.html">haql-45q</a></li>
+          <li><a href="haql-emission.html">haql-emission</a></li>
+          <li><a href="haql-rrc.html">haql-rrc</a></li>
+          <li><a href="haql-dataroom.html">haql-dataroom</a></li>
+          <li><a href="haql-engine.html">haql-engine</a></li>
+        </ul>
+      </div>
+      <div class="ftr__col">
+        <h2>Open source</h2>
+        <ul>
+          <li><a href="haql-units.html">haql-units (MIT)</a></li>
+          <li><a href="haql-coords.html">haql-coords (MIT)</a></li>
+          <li><a href="sample-audit.json" download>Sample audit JSON</a></li>
+          <li><a href="https://github.com/haql-lab" rel="noopener">GitHub organisation</a></li>
+        </ul>
+      </div>
+      <div class="ftr__col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#faq">Trust &amp; FAQ</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="mailto:no1mlengineer234@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__bottom">
+      <p>© <span id="yr">2026</span> Haql Labs · Built and maintained by an independent reservoir and production software engineer.</p>
+      <p>No cookies, no trackers, no analytics, no backend.</p>
+    </div>
   </div>
 </footer>
 

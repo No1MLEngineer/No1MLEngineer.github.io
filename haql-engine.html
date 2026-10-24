@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>haql-engine — independent reservoir simulation audit | Haql Labs</title>
+<meta name="description" content="A from-scratch three-phase black-oil engine and an independent audit for Eclipse and OPM runs. Mass balance, convergence, reproduction and input integrity — with the misses published.">
+<link rel="canonical" href="https://haql-lab.github.io/haql-engine.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="haql-engine — independent reservoir simulation audit">
+<meta property="og:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published.">
+<meta property="og:url" content="https://haql-lab.github.io/haql-engine.html">
+<meta name="theme-color" content="#0c100f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/space-grotesk-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:site_name" content="Haql Labs">
+<meta property="og:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Haql Labs — deterministic, offline software for oil and gas data">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="haql-engine — independent reservoir simulation audit">
+<meta name="twitter:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published.">
+<meta name="twitter:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Haql Labs",
+  "url": "https://haql-lab.github.io/",
+  "logo": "https://haql-lab.github.io/assets/img/icon-512.png",
+  "email": "no1mlengineer234@gmail.com",
+  "description": "Haql Labs builds deterministic, offline software for oil and gas production data.",
+  "sameAs": ["https://github.com/haql-lab"]
+}
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Haql Labs — home">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>
+      <span class="brand__word">haql<span class="brand__lab">Labs</span></span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <details class="menu">
+        <summary>Products</summary>
+        <div class="menu__panel">
+          <a class="menu__item" href="haql-qc.html"><b>haql-qc</b><span>Production data quality</span></a>
+          <a class="menu__item" href="haql-closeout.html"><b>haql-closeout</b><span>Month-end closeout</span></a>
+          <a class="menu__item" href="haql-45q.html"><b>haql-45q</b><span>45Q credit claims</span></a>
+          <a class="menu__item" href="haql-emission.html"><b>haql-emission</b><span>GHG &amp; EU ETS MRV</span></a>
+          <a class="menu__item" href="haql-rrc.html"><b>haql-rrc</b><span>Texas RRC Form PR</span></a>
+          <a class="menu__item" href="haql-dataroom.html"><b>haql-dataroom</b><span>A&amp;D dataroom QC</span></a>
+          <a class="menu__item" href="haql-engine.html"><b>haql-engine</b><span>Simulation audit</span></a>
+          <a class="menu__item" href="haql-units.html"><b>haql-units</b><span>Unit conversions · MIT</span></a>
+          <a class="menu__item" href="haql-coords.html"><b>haql-coords</b><span>Wellbore math · MIT</span></a>
+          <a class="menu__all" href="index.html#tools">All nine tools →</a>
+        </div>
+      </details>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="downloads.html">Downloads</a>
+      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Simulation%20audit%20enquiry">Send a deck</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div class="hero__copy">
+      <p class="eyebrow">haql-engine · Simulation audit</p>
+      <h1>A forecast is not evidence. <em>An audit is.</em></h1>
+      <p class="lede">haql-engine is a from-scratch three-phase black-oil engine and an independent audit for Eclipse and OPM runs. It checks the run's own mass balance, convergence, reproduction and input integrity — and publishes the misses, including the ones it finds in public field data.</p>
+      <div class="cta">
+        <a class="btn btn--p" href="mailto:no1mlengineer234@gmail.com?subject=Simulation%20audit%20enquiry">Send a deck and run</a>
+        <a class="btn btn--s" href="#evidence">See the evidence</a>
+      </div>
+      <p class="reassure"><b>Not a faster simulator:</b> on SPE1 the engine is about 10× slower than OPM Flow at its loosest setting and 25–40× slower at the tolerance that passes its mass-balance gate. Its value is independent verification, not speed.</p>
+    </div>
+
+    <div class="hero__panel">
+      <div class="panel__bar"><span class="dot"></span>one audit</div>
+      <pre class="panel__body" tabindex="0" aria-label="Example audit output"><span class="c"># audit a delivered run, with an optional reference</span>
+python3 verify/audit.py \
+  --deck NORNE.DATA \
+  --run norne_run/ \
+  --reference opm_reference/ \
+  --out audit.md --pdf audit.pdf
+
+<span class="c"># Norne B1H, 113,344 cells — the run's own numbers</span>
+material balance  <span class="g">PASS</span>  oil 3.46e-7   gate 1e-6
+solver log        <span class="g">PASS</span>  no explicit failures
+verdict           <span class="y">PASS WITH FINDINGS</span>  0 high, 1 medium, 4 info
+
+<span class="c"># the same run against OPM's reference</span>
+pressure          <span class="g">PASS</span>  max 0.051 psi
+saturation        <span class="r">FAIL</span>  SGAS 0.792 at (24,24,2)
+verdict           <span class="r">FAIL</span>  1 high</pre>
+      <p class="panel__cap">Real output from the public Norne field case, not a mock-up. The audit names the cell, the values on both sides and the gate that failed. The Markdown is the source of truth; the PDF is a designed rendering.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS ============ -->
+<section class="sec" id="what">
+  <div class="wrap">
+    <p class="eyebrow">What it is</p>
+    <h2>An engine for checking the physics. An audit for checking the run.</h2>
+    <p class="lede lede--c">Two pieces, one purpose: make a simulation result something a reviewer can sign. The engine is the independent implementation; the audit reads a delivered deck and run and tests what the simulator itself claims.</p>
+    <div class="io">
+      <div class="io__b">
+        <h4>The engine</h4>
+        <p>Three-phase black oil — oil, water, free gas and dissolved gas — with implicit finite volumes, TPFA fluxes, upstream mobility, Peaceman wells, and variable switching between <code>Sg</code> and <code>Rs</code>. Python/NumPy, one CPU thread, Cartesian grids. It is a verification instrument, not a production simulator.</p>
+      </div>
+      <div class="io__b">
+        <h4>The audit</h4>
+        <p>Reads the deck and the run's own summary/restart output. Checks field material balance at 1e-6, convergence and solver-log health, cell-by-cell reproduction against a reference, and input integrity (PVT, relperm, grid, units, schedule). Emits Markdown, PDF and JSON with a report ID derived from the hashes.</p>
+      </div>
+    </div>
+    <p class="fine">The audit does not simulate. When a run lacks balance vectors, it can instrument the deck with output-only vectors and re-run it in OPM Flow — and it records both runs. When a gate cannot be evaluated, it reports <code>UNKNOWN</code>; it never passes by default.</p>
+  </div>
+</section>
+
+<!-- ============ EVIDENCE ============ -->
+<section class="sec sec--alt" id="evidence">
+  <div class="wrap">
+    <p class="eyebrow">Measured, not claimed</p>
+    <h2>The scorecard, including the failures.</h2>
+    <div class="stats">
+      <div class="stat"><b>4.6e-7</b><span>SPE1 oil mass balance, 3,285 days — gate 1e-6</span></div>
+      <div class="stat"><b>3.14%</b><span>SPE1 cumulative oil vs OPM Flow — RMS 1.6%</span></div>
+      <div class="stat"><b>3.6%</b><span>SPE1 flowing BHP RMS vs OPM Flow</span></div>
+      <div class="stat"><b>113,344</b><span>Norne cells audited — 44,927 active</span></div>
+    </div>
+    <p class="fine">SPE1 is a comparison, not a pass of the pre-registered 1 psi / 1e-3 saturation gate: the 3.14% cumulative-oil gap is real and largest late in the run. The engine is 10× slower than OPM Flow at the loose setting that fails its own mass-balance gate, and 25–40× slower at the setting that passes. That is the price of a finite-difference Jacobian in Python; the value is an independent, conservative check, not a speed record.</p>
+
+    <div class="pains">
+      <article class="pain">
+        <h3>Norne B1H — clean run</h3>
+        <p>Material balance passes 1e-6: oil 3.46e-7, gas 3.20e-7, water 5.41e-8. No explicit solver failures; the release log does not print scaled residuals, so the residual gate is UNKNOWN. Verdict: PASS WITH FINDINGS — 0 high, 1 medium, 4 info.</p>
+      </article>
+      <article class="pain">
+        <h3>Norne full 10-year — mass balance</h3>
+        <p>The run fails the 1e-6 gate: oil 2.18e-4 (~35,044 stb), gas 1.53e-4 (~4.13e6 scf), water 3.33e-6. The PRT records <code>NewtonTolerance=0.01</code>; the report calls it a tolerance/accumulation gap, not a proven conservation bug.</p>
+      </article>
+      <article class="pain">
+        <h3>Norne comparative — one cell</h3>
+        <p>Pressure passes at 0.051 psi max, BHP at 0.56 psi RMS, oil rate at 2.6e-5. Saturation fails in one cell: <code>SGAS</code> 0.792 at (24,24,2) where the reference has free gas and the candidate has oil; <code>RS</code> differs by 0.15. The audit names the cell; the engineer decides whether the phase appearance is acceptable.</p>
+      </article>
+      <article class="pain">
+        <h3>Norne full reference log — convergence</h3>
+        <p>20 solver failures (15 phase-specific) and 20 timestep cuts over 1,625 Newton iterations. The audit flags solver-log health High. The public log has no summary, so material balance is UNKNOWN, not passed.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIMITS ============ -->
+<section class="sec" id="limits">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Honest limits</p>
+    <h2>What this is not.</h2>
+    <ul class="plain">
+      <li><b>Not a replacement simulator.</b> SPE1 only; no SPE9, no corner-point/EGRID, no real field grids yet. Cartesian grids, single-threaded Python. The engine is a cross-check, not a development-planning tool.</li>
+      <li><b>Not faster.</b> 10× slower than OPM Flow at the loose setting; 25–40× slower at the tolerance that passes the mass-balance gate. A speed claim would be false.</li>
+      <li><b>Not a geology or reserves audit.</b> The audit checks numerical and input integrity. It does not judge upscaling, SCAL, hysteresis, history match, or whether the field will produce what the model says.</li>
+      <li><b>No client field audit yet.</b> The Norne case is public; it is not a client engagement. The first client audit is priced and scoped as a pilot, with success criteria signed before work starts.</li>
+      <li><b>UNKNOWN is not PASS.</b> OPM's release log does not print scaled residuals, so convergence is often UNKNOWN; the audit says so and reports the log-health proxy separately.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ENGAGEMENT ============ -->
+<section class="sec sec--alt" id="pilot">
+  <div class="wrap">
+    <p class="eyebrow">The engagement</p>
+    <h2>$50k per audit. A verdict you can sign, not a completion message.</h2>
+    <p class="lede lede--c">One run, one report, one readout. The first engagement is a pilot, scoped to what the samples demonstrate; the standard audit is the full scope below.</p>
+    <ol class="flow">
+      <li><b>Send</b><span>The deck with all INCLUDE files, the run directory (SMSPEC/UNSMRY, UNRST for cell comparisons), and a reference run if reproduction is in scope.</span></li>
+      <li><b>Audit</b><span>Mass balance, convergence and log health, cell-by-cell reproduction, and input integrity. Same-day for SPE1-class; 2–3 days for a 10⁴–10⁵-cell sector; 1–2 weeks for a 10⁶-cell full field.</span></li>
+      <li><b>Readout</b><span>A PDF/Markdown report with severity-ranked findings and quoted evidence, a JSON record with deck/run hashes, and the exact reproduction command.</span></li>
+      <li><b>Sign-off</b><span>A named reviewer is recorded on the report and signs off on the readout. Pass opens the next conversation; fail gets a written failure analysis, not a sales call.</span></li>
+    </ol>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Pilot</h3>
+        <p class="tier__p"><b>$5–10k</b></p>
+        <p>First engagement only. One run, scoped to what the public samples demonstrate. Success criteria and deliverables agreed in writing before work starts.</p>
+      </div>
+      <div class="tier tier--mid">
+        <h3>Standard audit</h3>
+        <p class="tier__p"><b>$50k</b>/engagement</p>
+        <p>One run, one report, one readout. PDF + JSON + the exact reproduction command. The decision at stake is usually larger: a 1% error on a $100M development is $1M.</p>
+      </div>
+      <div class="tier">
+        <h3>Retainer</h3>
+        <p class="tier__p"><b>$50k</b>/month</p>
+        <p>One audit per month, priority scheduling, named reviewer. Offered after a completed pilot — not before.</p>
+      </div>
+    </div>
+    <p class="fine">The $50k figure is the offer, not a claim of market demand. The public Norne case is not a client engagement. The first client audit is a pilot; the retainer is offered only after a completed pilot and a named reviewer.</p>
+    <div class="cta">
+      <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Simulation%20audit%20enquiry">Send a deck and run</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">FAQ</p>
+    <h2>Straight answers.</h2>
+    <details><summary>Does haql-engine replace Eclipse or CMG?</summary><p>No. It audits their output and cross-checks the physics. The engine is an independent implementation for verification, not a production simulator; it supports SPE1-class Cartesian decks today, not full-field corner-point models.</p></details>
+    <details><summary>Is it faster?</summary><p>No. On SPE1 it is about 10× slower than OPM Flow at the loose setting and 25–40× slower at the tolerance that passes its 1e-6 mass-balance gate. The value is independent verification, not speed.</p></details>
+    <details><summary>What exactly does the audit check?</summary><p>Field material balance from the run's own in-place and cumulative vectors; Newton convergence and solver-log health; cell-by-cell pressure, saturation, BHP, oil rate and water cut against a reference; and input integrity — PVT, relperm, grid, units and schedule. It does not judge geology, upscaling, SCAL or history match.</p></details>
+    <details><summary>What if my run has no balance vectors?</summary><p>The audit can instrument the deck with output-only FOIP/FWIP/FGIP vectors and re-run it in OPM Flow, then audit the re-run. The report records both runs and says the re-run is an independent reproduction, not your original run. Without that, the gate is UNKNOWN, not passed.</p></details>
+    <details><summary>Has a client used it?</summary><p>Not yet. The evidence on this page is from the public SPE1 benchmark and Equinor's public Norne field case. The first client engagement is a pilot, with success criteria signed before work starts.</p></details>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec sec--alt" id="contact">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Next</p>
+    <h2>Send the deck and the run.</h2>
+    <p class="lede">Tell us the simulator, the model size and the decision at stake. If the audit fits, you'll have a fixed price and success criteria within a week.</p>
+    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Simulation%20audit%20enquiry">no1mlengineer234@gmail.com</a>
+    <div class="links">
+      <div><b>Evidence</b><a href="#evidence">SPE1 and Norne results</a></div>
+      <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <a class="brand" href="index.html" aria-label="Haql Labs — home">
+          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>
+          <span class="brand__word">haql<span class="brand__lab">Labs</span></span>
+        </a>
+        <p>Deterministic, offline software for oil and gas production data. Every finding cites the rule, the source row and the input hash. Findings are advisory; the judgment is yours.</p>
+      </div>
+      <div class="ftr__col">
+        <h2>Products</h2>
+        <ul>
+          <li><a href="haql-qc.html">haql-qc</a></li>
+          <li><a href="haql-closeout.html">haql-closeout</a></li>
+          <li><a href="haql-45q.html">haql-45q</a></li>
+          <li><a href="haql-emission.html">haql-emission</a></li>
+          <li><a href="haql-rrc.html">haql-rrc</a></li>
+          <li><a href="haql-dataroom.html">haql-dataroom</a></li>
+          <li><a href="haql-engine.html">haql-engine</a></li>
+        </ul>
+      </div>
+      <div class="ftr__col">
+        <h2>Open source</h2>
+        <ul>
+          <li><a href="haql-units.html">haql-units (MIT)</a></li>
+          <li><a href="haql-coords.html">haql-coords (MIT)</a></li>
+          <li><a href="sample-audit.json" download>Sample audit JSON</a></li>
+          <li><a href="https://github.com/haql-lab" rel="noopener">GitHub organisation</a></li>
+        </ul>
+      </div>
+      <div class="ftr__col">
+        <h2>Company</h2>
+        <ul>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#faq">Trust &amp; FAQ</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="credits.html">Image credits</a></li>
+          <li><a href="mailto:no1mlengineer234@gmail.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr__bottom">
+      <p>© <span id="yr">2026</span> Haql Labs · Built and maintained by an independent reservoir and production software engineer.</p>
+      <p>No cookies, no trackers, no analytics, no backend.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

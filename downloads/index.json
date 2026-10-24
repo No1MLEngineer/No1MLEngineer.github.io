@@ -1,0 +1,76 @@
+{
+  "entries": {
+    "haql-45q-0.1.0-linux-x86_64.zip": {
+      "bytes": 12604888,
+      "file": "haql-45q-0.1.0-linux-x86_64.zip",
+      "name": "haql-45q",
+      "prods": [
+        "45q"
+      ],
+      "sha256": "a5bcba531631bbda7e540652c52f24ebeef4aa4ce81466e16776dd42944991ec",
+      "summary": "45Q carbon-sequestration credit MRV packager.",
+      "tag": "linux-x86_64",
+      "version": "0.1.0"
+    },
+    "haql-closeout-0.1.0-linux-x86_64.zip": {
+      "bytes": 12511777,
+      "file": "haql-closeout-0.1.0-linux-x86_64.zip",
+      "name": "haql-closeout",
+      "prods": [
+        "closeout"
+      ],
+      "sha256": "5d6accc635012bd2db66f24cc9462697a99b9beb4a2ebffdfdf189fa18c1cf6f",
+      "summary": "Month-end closeout QC: well tests vs daily, downtime, field balance.",
+      "tag": "linux-x86_64",
+      "version": "0.1.0"
+    },
+    "haql-dataroom-0.1.0-linux-x86_64.zip": {
+      "bytes": 12613383,
+      "file": "haql-dataroom-0.1.0-linux-x86_64.zip",
+      "name": "haql-dataroom",
+      "prods": [
+        "dataroom"
+      ],
+      "sha256": "f61e43e7a52444b4a7575406098270b5671adeecd7daf5a87e48f2eaa8942634",
+      "summary": "A&D dataroom QC scrubber for acquisitions.",
+      "tag": "linux-x86_64",
+      "version": "0.1.0"
+    },
+    "haql-emission-0.1.0-linux-x86_64.zip": {
+      "bytes": 12604462,
+      "file": "haql-emission-0.1.0-linux-x86_64.zip",
+      "name": "haql-emission",
+      "prods": [
+        "emission"
+      ],
+      "sha256": "8eaa03353085a5907ae70daeb0f23caf34ca708d4395e885f4fabfc790ab6274",
+      "summary": "Emissions MRV packager and EU ETS allowance position.",
+      "tag": "linux-x86_64",
+      "version": "0.1.0"
+    },
+    "haql-qc-0.4.1-linux-x86_64.zip": {
+      "bytes": 12559978,
+      "file": "haql-qc-0.4.1-linux-x86_64.zip",
+      "name": "haql-qc",
+      "prods": [
+        "qc"
+      ],
+      "sha256": "b4deda5d9ba43cc330f2ae61fc0275a71258ff9e2d9d1e92dd8567e95a60d433",
+      "summary": "Production data QC and reconciliation with a raw-preserving audit trail.",
+      "tag": "linux-x86_64",
+      "version": "0.4.1"
+    },
+    "haql-rrc-0.1.0-linux-x86_64.zip": {
+      "bytes": 12592845,
+      "file": "haql-rrc-0.1.0-linux-x86_64.zip",
+      "name": "haql-rrc",
+      "prods": [
+        "rrc"
+      ],
+      "sha256": "b1bf75e32d3b637faf864b51534f98521ee06700c0652b9a82bc0b99df70a07a",
+      "summary": "Texas RRC production filing QC and deadline/fine clock.",
+      "tag": "linux-x86_64",
+      "version": "0.1.0"
+    }
+  }
+}
