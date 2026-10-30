@@ -12,6 +12,7 @@ One page per product:
 - `haql-emission.html` — GHG inventory reconciliation and EU ETS allowance position
 - `haql-rrc.html` — Texas RRC Form PR filing QC (operator, disposition codes, district, deadline, filing status)
 - `haql-dataroom.html` — A&D dataroom cross-check (production vs well master/RRC, revenue, severance, reserves, LAS)
+- `haql-revenue.html` — purchaser statement audit (produced vs sold volume, price vs contract, deductions, value, duplicates, run tickets)
 - `haql-units.html` — field-to-SI unit conversions (MIT)
 - `haql-coords.html` — minimum curvature, DLS, UTM/WGS84 (MIT)
 - `credits.html` — image credits and licenses for the field photography

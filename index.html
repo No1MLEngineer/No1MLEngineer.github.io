@@ -65,10 +65,11 @@
           <a class="menu__item" href="haql-emission.html"><b>haql-emission</b><span>GHG &amp; EU ETS MRV</span></a>
           <a class="menu__item" href="haql-rrc.html"><b>haql-rrc</b><span>Texas RRC Form PR</span></a>
           <a class="menu__item" href="haql-dataroom.html"><b>haql-dataroom</b><span>A&amp;D dataroom QC</span></a>
+          <a class="menu__item" href="haql-revenue.html"><b>haql-revenue</b><span>Purchaser statements</span></a>
           <a class="menu__item" href="haql-engine.html"><b>haql-engine</b><span>Simulation audit</span></a>
           <a class="menu__item" href="haql-units.html"><b>haql-units</b><span>Unit conversions · MIT</span></a>
           <a class="menu__item" href="haql-coords.html"><b>haql-coords</b><span>Wellbore math · MIT</span></a>
-          <a class="menu__all" href="index.html#tools">All nine tools →</a>
+          <a class="menu__all" href="index.html#tools">All ten tools →</a>
         </div>
       </details>
       <a href="index.html#how">How it works</a>
@@ -97,7 +98,7 @@
       <p class="lede">A monthly total still adds up when four wells carry negative volumes. Haql tools read the export you already have and point at the exact row where the numbers contradict each other.</p>
       <div class="cta">
         <a class="btn btn--p" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Request a free sample check</a>
-        <a class="btn btn--s" href="#tools">See the nine tools</a>
+        <a class="btn btn--s" href="#tools">See the ten tools</a>
       </div>
       <ul class="proof">
         <li>Runs offline</li>
@@ -131,8 +132,8 @@
 <section class="sec" id="tools">
   <div class="wrap">
     <p class="eyebrow">The suite</p>
-    <h2>Nine tools. Each one answers one question you already ask.</h2>
-    <p class="lede lede--c">Seven commercial products — six self-contained binaries and one independent simulation audit — plus two MIT libraries. All share one stance: read-only, offline, deterministic, traced to a row in your own file.</p>
+    <h2>Ten tools. Each one answers one question you already ask.</h2>
+    <p class="lede lede--c">Eight commercial products — six self-contained binaries, one independent simulation audit and one purchaser-statement audit — plus two MIT libraries. All share one stance: read-only, offline, deterministic, traced to a row in your own file.</p>
 
     <div class="suite">
       <article class="product">
@@ -172,6 +173,12 @@
       </article>
 
       <article class="product">
+        <div class="product__hd"><h3>haql-revenue</h3><span class="pill">Revenue audit</span></div>
+        <p>Reconciles produced volumes against purchaser statements: missing statements, price below contract, volume short, duplicate lines and unscheduled deductions, ranked by dollars.</p>
+        <div class="product__meta"><span>ruleset 0.1.0 · commercial</span><a class="product__link" href="haql-revenue.html">View haql-revenue</a></div>
+      </article>
+
+      <article class="product">
         <div class="product__hd"><h3>haql-engine</h3><span class="pill">Simulation audit</span></div>
         <p>Independent audit of an Eclipse/OPM run: mass balance, convergence, reproduction and input integrity. The engine is the verification instrument; the audit is the deliverable.</p>
         <div class="product__meta"><span>per engagement · pilot</span><a class="product__link" href="haql-engine.html">View haql-engine</a></div>
@@ -190,7 +197,7 @@
       </article>
     </div>
 
-    <p class="fine mt-4">Linux builds are published now; Windows and macOS builds are made on request. <a href="downloads.html">See the downloads page</a> for builds, hashes and the 30-day evaluation.</p>
+    <p class="fine mt-4">Builds are sent as private links; Linux x86_64 is available now, Windows and macOS on request. <a href="downloads.html">See the downloads page</a> for the request process, hashes and the 30-day evaluation.</p>
   </div>
 </section>
 
@@ -318,7 +325,7 @@
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Trust &amp; FAQ</p>
     <h2>Why hand a month of data to a stranger.</h2>
-    <p class="lede">The six commercial data tools are single self-contained binaries that run entirely on your machine, offline, with no installer and no Python. The simulation audit is a service: send a deck and run, and we return a signed report. The MIT libraries install from PyPI. None of these tools opens a network connection. The rules are numbered permanently — adding a rule never renumbers an existing one.</p>
+    <p class="lede">The six commercial data tools are single self-contained binaries that run entirely on your machine, offline, with no installer and no Python. haql-revenue is a licensed Python 3.8+ package, standard library only, with a local review UI — still no network call. The simulation audit is a service: send a deck and run, and we return a signed report. The MIT libraries install from PyPI. None of these tools opens a network connection. The rules are numbered permanently — adding a rule never renumbers an existing one.</p>
     <ul class="plain">
       <li><b>Never corrupt source data.</b> Read-only by construction. Correcting requires knowing which of two contradictory fields is wrong, and the data cannot supply that.</li>
       <li><b>Never guess.</b> Units are declared by you and recorded in the report as your declaration.</li>
@@ -328,7 +335,7 @@
 
     <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call. Running the same file twice gives the same answer.</p></details>
     <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check, you choose to email us the file, and you can ask for it back anonymised or deleted.</p></details>
-    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself, download the Linux binary from the <a href="downloads.html">downloads page</a> — no Python, nothing else to configure. Windows and macOS builds are made on request.</p></details>
+    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself, request a private build link from the <a href="downloads.html">downloads page</a> — no Python, nothing else to configure. <span class="mono">haql-revenue</span> is the exception: it runs from Python 3.8+ with no third-party packages. Linux x86_64 is available now; Windows and macOS builds are made on request.</p></details>
     <details><summary>How is it licensed?</summary><p>The commercial tools are proprietary: running them requires a signed Ed25519 token carrying company, tier, seats and expiry, verified entirely offline. No activation server. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> are MIT and need no license.</p></details>
   </div>
 </section>
@@ -375,6 +382,7 @@
           <li><a href="haql-emission.html">haql-emission</a></li>
           <li><a href="haql-rrc.html">haql-rrc</a></li>
           <li><a href="haql-dataroom.html">haql-dataroom</a></li>
+          <li><a href="haql-revenue.html">haql-revenue</a></li>
           <li><a href="haql-engine.html">haql-engine</a></li>
         </ul>
       </div>
