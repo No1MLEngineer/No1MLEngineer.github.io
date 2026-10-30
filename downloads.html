@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Downloads — Haql Labs</title>
-<meta name="description" content="Download Haql Labs tools as single self-contained binaries for Windows, macOS and Linux. No Python, fully offline, 30-day evaluation with no license key.">
+<meta name="description" content="Download Haql Labs tools as single self-contained binaries. Linux builds are available now; Windows and macOS builds are made on request. No Python, fully offline, 30-day evaluation with no license key.">
 <link rel="canonical" href="https://haql-lab.github.io/downloads.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Download the Haql Labs tools — Windows, macOS, Linux">
-<meta property="og:description" content="Single self-contained binaries. No Python, no installer, fully offline. 30-day evaluation, no license key.">
+<meta property="og:description" content="Single self-contained binaries. Linux builds available now; Windows and macOS on request. No Python, no installer, fully offline. 30-day evaluation, no license key.">
 <meta property="og:url" content="https://haql-lab.github.io/downloads.html">
 <meta name="theme-color" content="#0c100f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
@@ -25,7 +25,7 @@
 <meta property="og:image:alt" content="Haql Labs — deterministic, offline software for oil and gas data">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Download the Haql Labs tools — Windows, macOS, Linux">
-<meta name="twitter:description" content="Single self-contained binaries. No Python, no installer, fully offline. 30-day evaluation, no license key.">
+<meta name="twitter:description" content="Single self-contained binaries. Linux builds available now; Windows and macOS on request. No Python, no installer, fully offline. 30-day evaluation, no license key.">
 <meta name="twitter:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "name": "Haql Labs",
   "url": "https://haql-lab.github.io/",
   "logo": "https://haql-lab.github.io/assets/img/icon-512.png",
-  "email": "no1mlengineer234@gmail.com",
+  "email": "kunleaz100@gmail.com",
   "description": "Haql Labs builds deterministic, offline software for oil and gas production data.",
   "sameAs": ["https://github.com/haql-lab"]
 }
@@ -73,7 +73,7 @@
       <a href="index.html#pricing">Pricing</a>
       <a href="index.html#faq">FAQ</a>
       <a href="downloads.html">Downloads</a>
-      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Request a sample</a>
+      <a class="nav__cta" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Request a sample</a>
     </nav>
   </div>
 </header>
@@ -89,22 +89,22 @@
       <p class="lede">Each binary tool ships as a single self-contained file — no Python to install, no dependencies to resolve, no installer. Unzip it, run it. The simulation audit is a service: send a deck and run, get a signed report. No tool opens a network connection.</p>
       <div class="cta">
         <a class="btn btn--p" href="#tools">Choose your platform</a>
-        <a class="btn btn--s" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Or send me a month — free check</a>
+        <a class="btn btn--s" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Or send me a month — free check</a>
       </div>
       <p class="reassure"><b>Evaluation:</b> every tool runs for 30 days with no license key. After that, point it at a signed license file — verified entirely offline, nothing to activate online.</p>
     </div>
 
     <div class="hero__panel">
       <div class="panel__bar"><span class="dot"></span>unzip and run</div>
-      <pre class="panel__body" tabindex="0" aria-label="Example report output"><span class="c"># macOS / Linux — .zip download, then</span>
-unzip haql-qc-0.4.1-macos-arm64.zip
+      <pre class="panel__body" tabindex="0" aria-label="Example report output"><span class="c"># Linux x86_64 — .zip download, then</span>
+unzip haql-qc-0.4.1-linux-x86_64.zip
 ./haql-qc --version
 <span class="k">haql-qc 0.4.1 (ruleset 1.2.0)</span>
 
 ./haql-qc -i production.csv -r audit.json
 
-<span class="c"># Windows — unzip, then in PowerShell</span>
-.\haql-qc.exe -i production.csv -r audit.json</pre>
+<span class="c"># Windows / macOS — ask for a build</span>
+<span class="c"># the same CLI, packaged for your platform</span></pre>
       <p class="panel__cap">Every zip contains the binary, a <code>QUICKSTART.txt</code>, the product <code>README.md</code> and its <code>LICENSE</code>. Nothing else to install.</p>
     </div>
   </div>
@@ -144,7 +144,7 @@ unzip haql-qc-0.4.1-macos-arm64.zip
 
       <article class="tool" data-product="haql-emission">
         <div class="tool__hd"><h3>haql-emission</h3><span class="pill">Emissions MRV</span></div>
-        <p>Reconcile a GHG inventory from activity, flare, vent and monitoring exports, and price the EU ETS allowance position with penalty exposure.</p>
+        <p>Reconcile a GHG inventory from activity, flare, vent and monitoring exports, and price the EU ETS allowance position.</p>
         <p class="fine"><span class="mono" data-version="haql-emission">v0.1.0</span> · <a href="haql-emission.html">what it checks</a></p>
         <div class="dl-os" data-os-row="haql-emission"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
         <p class="dl-meta" data-sha-row="haql-emission"></p>
@@ -152,7 +152,7 @@ unzip haql-qc-0.4.1-macos-arm64.zip
 
       <article class="tool" data-product="haql-rrc">
         <div class="tool__hd"><h3>haql-rrc</h3><span class="pill">RRC filing</span></div>
-        <p>Check a Texas RRC Form PR export before it is filed — operator numbers, disposition codes, district, flare remarks, plus the deadline and fine clock.</p>
+        <p>Check a Texas RRC Form PR export before it is filed — operator numbers, disposition codes, district, flare remarks, plus the filing deadline and status.</p>
         <p class="fine"><span class="mono" data-version="haql-rrc">v0.1.0</span> · <a href="haql-rrc.html">what it checks</a></p>
         <div class="dl-os" data-os-row="haql-rrc"><span class="na" data-os="windows">Windows</span><span class="na" data-os="macos">macOS</span><span class="na" data-os="linux">Linux</span></div>
         <p class="dl-meta" data-sha-row="haql-rrc"></p>
@@ -169,7 +169,7 @@ unzip haql-qc-0.4.1-macos-arm64.zip
       <article class="tool">
         <div class="tool__hd"><h3>haql-engine</h3><span class="pill">Simulation audit</span></div>
         <p>Independent audit of an Eclipse/OPM run — mass balance, convergence, reproduction and input integrity. The engine is the verification instrument; the audit is the deliverable.</p>
-        <p class="fine">Not a self-serve download — <a href="mailto:no1mlengineer234@gmail.com?subject=Simulation%20audit%20enquiry">send a deck and run</a></p>
+        <p class="fine">Not a self-serve download — <a href="mailto:kunleaz100@gmail.com?subject=Simulation%20audit%20enquiry">send a deck and run</a></p>
       </article>
 
       <article class="tool">
@@ -213,7 +213,7 @@ unzip haql-qc-0.4.1-macos-arm64.zip
     <p class="eyebrow">Next</p>
     <h2>Download it, or send us a month of data.</h2>
     <p class="lede">Run the binary yourself, or email one month of data — anonymised if you prefer — and get the full report at no cost. Same rules either way.</p>
-    <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
+    <a class="btn btn--p btn--lg" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">kunleaz100@gmail.com</a>
     <div class="links">
       <div><b>Downloads</b><a href="downloads.html">haql-lab.github.io/downloads</a></div>
       <div><b>GitHub</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
@@ -260,9 +260,8 @@ unzip haql-qc-0.4.1-macos-arm64.zip
           <li><a href="index.html#how">How it works</a></li>
           <li><a href="index.html#pricing">Pricing</a></li>
           <li><a href="index.html#faq">Trust &amp; FAQ</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="downloads.html">Downloads</a></li>
-          <li><a href="mailto:no1mlengineer234@gmail.com">Contact</a></li>
+          <li><a href="mailto:kunleaz100@gmail.com">Contact</a></li>
         </ul>
       </div>
     </div>

@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Haql Labs — Deterministic software for oil & gas data</title>
-<meta name="description" content="Offline, deterministic tools for oil and gas data: production QC, closeout, 45Q and emissions MRV, RRC filing QC, dataroom QC and forecasting.">
+<meta name="description" content="Deterministic, offline software for oil and gas data: production QC, month-end closeout, 45Q carbon credit MRV, emissions/GHG inventory MRV, Texas RRC filing QC, A&amp;D dataroom QC, simulation audit, units and coordinates. No AI, no cloud uploads.">
 <link rel="canonical" href="https://haql-lab.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Haql Labs">
 <meta property="og:title" content="Haql Labs — Catch what the summary hides">
-<meta property="og:description" content="Deterministic, offline tools for oil and gas data. Every finding cites the rule, the source row and the input SHA-256.">
+<meta property="og:description" content="Deterministic, offline tools for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&amp;D dataroom QC, simulation audit, units, coordinates. Every finding cites a row and rule ID.">
 <meta property="og:url" content="https://haql-lab.github.io/">
 <meta property="og:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:image:alt" content="Haql Labs — catch what the summary hides, over a sunset view of the Trans-Alaska Pipeline">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Haql Labs — Catch what the summary hides">
-<meta name="twitter:description" content="Deterministic, offline tools for oil and gas data. Every finding cites the rule, the source row and the input SHA-256.">
+<meta name="twitter:description" content="Deterministic, offline tools for oil and gas data: production QC, closeout, 45Q, emissions MRV, RRC filing QC, A&amp;D dataroom QC, simulation audit, units, coordinates. Offline, traceable, and transparent.">
 <meta name="twitter:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
 <meta name="twitter:image:alt" content="Haql Labs — catch what the summary hides, over a sunset view of the Trans-Alaska Pipeline">
 <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
@@ -37,8 +37,8 @@
   "name": "Haql Labs",
   "url": "https://haql-lab.github.io/",
   "logo": "https://haql-lab.github.io/assets/img/icon-512.png",
-  "email": "no1mlengineer234@gmail.com",
-  "description": "Haql Labs builds deterministic, offline software for oil and gas production data: production QC, month-end closeout, 45Q and emissions MRV, Texas RRC filing QC, A&D dataroom QC and reservoir forecasting.",
+  "email": "kunleaz100@gmail.com",
+  "description": "Haql Labs builds deterministic, offline software for oil and gas production data: production QC, month-end closeout, 45Q and emissions MRV, Texas RRC filing QC, A&D dataroom QC and simulation audit.",
   "sameAs": ["https://github.com/haql-lab"]
 }
 </script>
@@ -74,7 +74,7 @@
       <a href="index.html#how">How it works</a>
       <a href="index.html#pricing">Pricing</a>
       <a href="downloads.html">Downloads</a>
-      <a class="nav__cta" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Request a sample</a>
+      <a class="nav__cta" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Request a sample</a>
     </nav>
   </div>
 </header>
@@ -96,7 +96,7 @@
       <h1>Software that catches what the summary <em>hides</em>.</h1>
       <p class="lede">A monthly total still adds up when four wells carry negative volumes. Haql tools read the export you already have and point at the exact row where the numbers contradict each other.</p>
       <div class="cta">
-        <a class="btn btn--p" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Request a free sample check</a>
+        <a class="btn btn--p" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Request a free sample check</a>
         <a class="btn btn--s" href="#tools">See the nine tools</a>
       </div>
       <ul class="proof">
@@ -121,7 +121,7 @@
 <span class="c"># read-only: the export is never modified</span>
 <span class="c"># input SHA-256 recorded in every report</span>
 <span class="c"># identical bytes in → identical findings out</span></pre>
-      <p class="panel__cap">An example finding from the published validation run. Every finding carries a stable rule ID, a 1-indexed source row and the hash of the exact input audited.</p>
+      <p class="panel__cap">An example finding from the published validation run. Every finding carries a stable rule ID and a 1-indexed source row; the report records the SHA-256 of the exact input audited.</p>
     </div>
   </div>
   <p class="hero__credit">Trans-Alaska Pipeline · Craig McCaa / BLM Alaska · Public domain</p>
@@ -161,13 +161,13 @@
 
       <article class="product">
         <div class="product__hd"><h3>haql-rrc</h3><span class="pill">RRC filing</span></div>
-        <p>Checks a Texas RRC Form PR export before it is filed — operator numbers, disposition codes, district range, flare remarks, filing clock.</p>
+        <p>Checks a Texas RRC Form PR export before it is filed — operator numbers, disposition codes, district range, flare remarks, filing status.</p>
         <div class="product__meta"><span>ruleset 1.0.0 · commercial</span><a class="product__link" href="haql-rrc.html">View haql-rrc</a></div>
       </article>
 
       <article class="product">
         <div class="product__hd"><h3>haql-dataroom</h3><span class="pill">A&amp;D dataroom</span></div>
-        <p>Cross-checks an acquisition dataroom offline: production, revenue and severance tables, reserves and LAS headers — before the deal closes.</p>
+        <p>Cross-checks an acquisition dataroom offline: production, revenue and severance tables, reserves and LAS headers — every contradiction traced to a source row.</p>
         <div class="product__meta"><span>ruleset 1.0.0 · commercial</span><a class="product__link" href="haql-dataroom.html">View haql-dataroom</a></div>
       </article>
 
@@ -190,7 +190,7 @@
       </article>
     </div>
 
-    <p class="fine mt-4">Downloads are published per release for Windows, macOS and Linux. <a href="downloads.html">See the downloads page</a> for builds, hashes and the 30-day evaluation.</p>
+    <p class="fine mt-4">Linux builds are published now; Windows and macOS builds are made on request. <a href="downloads.html">See the downloads page</a> for builds, hashes and the 30-day evaluation.</p>
   </div>
 </section>
 
@@ -295,7 +295,7 @@
         <h3>Sample check</h3>
         <p class="tier__p"><b>Free</b></p>
         <p>One month of data, on the house. No key, no seat limit, no card. The point is to hit one finding you did not know about.</p>
-        <a class="btn btn--p btn--sm" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
+        <a class="btn btn--p btn--sm" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">Send me your CSV</a>
       </div>
       <div class="tier tier--mid">
         <h3>Team</h3>
@@ -318,7 +318,7 @@
   <div class="wrap wrap--narrow">
     <p class="eyebrow">Trust &amp; FAQ</p>
     <h2>Why hand a month of data to a stranger.</h2>
-    <p class="lede">Every Haql tool is a single self-contained binary that runs entirely on your machine, offline, with no installer and no Python. It never opens a network connection. The rules are numbered permanently — adding a rule never renumbers an existing one.</p>
+    <p class="lede">The six commercial data tools are single self-contained binaries that run entirely on your machine, offline, with no installer and no Python. The simulation audit is a service: send a deck and run, and we return a signed report. The MIT libraries install from PyPI. None of these tools opens a network connection. The rules are numbered permanently — adding a rule never renumbers an existing one.</p>
     <ul class="plain">
       <li><b>Never corrupt source data.</b> Read-only by construction. Correcting requires knowing which of two contradictory fields is wrong, and the data cannot supply that.</li>
       <li><b>Never guess.</b> Units are declared by you and recorded in the report as your declaration.</li>
@@ -328,7 +328,7 @@
 
     <details><summary>Does it use AI?</summary><p>No. Every rule is deterministic arithmetic on your data — comparisons, monotonicity checks, medians. No model, no network call. Running the same file twice gives the same answer.</p></details>
     <details><summary>Does my data leave my computer?</summary><p>Run locally, nothing leaves your machine — the code makes no outbound calls. If you use the free sample check, you choose to email us the file, and you can ask for it back anonymised or deleted.</p></details>
-    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself, download the binary for your OS from the <a href="downloads.html">downloads page</a> — no Python, nothing else to configure.</p></details>
+    <details><summary>What do I need to install?</summary><p>Nothing, if you use the free sample check. To run the tools yourself, download the Linux binary from the <a href="downloads.html">downloads page</a> — no Python, nothing else to configure. Windows and macOS builds are made on request.</p></details>
     <details><summary>How is it licensed?</summary><p>The commercial tools are proprietary: running them requires a signed Ed25519 token carrying company, tier, seats and expiry, verified entirely offline. No activation server. <span class="mono">haql-units</span> and <span class="mono">haql-coords</span> are MIT and need no license.</p></details>
   </div>
 </section>
@@ -342,7 +342,7 @@
         <p>Tell us which field, anonymise it if you need to, and mention anything unusual about how your operator reports — a sign convention, a units quirk, a column that means something other than its name.</p>
       </div>
       <div>
-        <a class="btn btn--p btn--lg" href="mailto:no1mlengineer234@gmail.com?subject=Free%20sample%20check%20request">no1mlengineer234@gmail.com</a>
+        <a class="btn btn--p btn--lg" href="mailto:kunleaz100@gmail.com?subject=Free%20sample%20check%20request">kunleaz100@gmail.com</a>
       </div>
     </div>
     <div class="links mt-4">
@@ -364,7 +364,7 @@
           <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="4.5" y="13" width="3" height="6" rx="1.5"/><rect x="10.5" y="9" width="3" height="10" rx="1.5"/><rect x="16.5" y="5" width="3" height="14" rx="1.5"/></svg></span>
           <span class="brand__word">haql<span class="brand__lab">Labs</span></span>
         </a>
-        <p>Deterministic, offline software for oil and gas production data. Every finding cites the rule, the source row and the input hash.</p>
+        <p>Deterministic, offline software for oil and gas production data. Every finding cites the rule and source row; every report records the input hash.</p>
       </div>
       <div class="ftr__col">
         <h2>Products</h2>
@@ -395,7 +395,7 @@
           <li><a href="index.html#faq">Trust &amp; FAQ</a></li>
           <li><a href="downloads.html">Downloads</a></li>
           <li><a href="credits.html">Image credits</a></li>
-          <li><a href="mailto:no1mlengineer234@gmail.com">Contact</a></li>
+          <li><a href="mailto:kunleaz100@gmail.com">Contact</a></li>
         </ul>
       </div>
     </div>

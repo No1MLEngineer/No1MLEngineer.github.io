@@ -10,7 +10,7 @@ One page per product:
 - `haql-45q.html` — 45Q MRV packager (mass balance, statutory credit rates, certification pack, Subpart RR due clock)
 - `haql-engine.html` — independent three-phase black-oil engine and simulation audit (mass balance, convergence, reproduction, input integrity)
 - `haql-emission.html` — GHG inventory reconciliation and EU ETS allowance position
-- `haql-rrc.html` — Texas RRC Form PR filing QC (operator, disposition codes, district, deadline, fine clock)
+- `haql-rrc.html` — Texas RRC Form PR filing QC (operator, disposition codes, district, deadline, filing status)
 - `haql-dataroom.html` — A&D dataroom cross-check (production vs well master/RRC, revenue, severance, reserves, LAS)
 - `haql-units.html` — field-to-SI unit conversions (MIT)
 - `haql-coords.html` — minimum curvature, DLS, UTM/WGS84 (MIT)
@@ -30,6 +30,8 @@ python3 -m http.server 8000
 ```
 
 ## Deployment (GitHub Pages)
-1. Push to repo `haql-lab/haql-lab.github.io` on `main` branch
-2. Settings → Pages → Deploy from branch (main / root)
+1. Push to repo `haql-lab/haql-lab.github.io` on the `main` branch.
+2. In Settings → Pages, set the source to **GitHub Actions**. The workflow at
+   `.github/workflows/static.yml` validates the static artifact and deploys the
+   repository root on every push to `main`.
 3. Live at https://haql-lab.github.io/

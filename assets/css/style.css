@@ -205,7 +205,12 @@ pre {
   font-family: var(--mono);
 }
 ::selection {
-  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  background: rgba(13, 92, 85, 0.22);
+}
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: rgba(116, 211, 198, 0.28);
+  }
 }
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -288,10 +293,15 @@ section[id] {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  background: rgba(250, 249, 245, 0.88);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--line);
+}
+@media (prefers-color-scheme: dark) {
+  .hdr {
+    background: rgba(12, 16, 15, 0.88);
+  }
 }
 .hdr__in {
   display: flex;
@@ -531,6 +541,7 @@ section[id] {
     border-bottom: 1px solid var(--line);
     box-shadow: 0 24px 40px rgba(10, 20, 18, 0.12);
     padding: 0.7rem clamp(1.25rem, 5vw, 2.5rem) 1rem;
+    max-height: calc(100vh - var(--hdr-h));
     max-height: calc(100dvh - var(--hdr-h));
     overflow-y: auto;
   }
@@ -1110,10 +1121,12 @@ section[id] {
   }
 }
 /* numeric step variant used by units/coords pages */
-.flow:has(> .step) {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr));
-  gap: 1.25rem;
-  border-top: 0;
+@supports selector(:has(*)) {
+  .flow:has(> .step) {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr));
+    gap: 1.25rem;
+    border-top: 0;
+  }
 }
 .flow > .step {
   position: relative;
@@ -1675,6 +1688,9 @@ section[id] {
   padding: 0.22rem 0.5rem;
   border-radius: var(--r-pill);
 }
+.tier--mid.tier--no-badge::after {
+  content: none;
+}
 .tier h3 {
   font-size: 1rem;
   margin-bottom: 0.8rem;
@@ -1816,7 +1832,7 @@ section[id] {
   max-width: 24ch;
 }
 .band p {
-  color: color-mix(in srgb, var(--ink-inverse) 74%, transparent);
+  color: rgba(247, 248, 246, 0.74);
   font-size: 0.95rem;
   max-width: 52ch;
 }
@@ -1830,12 +1846,23 @@ section[id] {
   color: var(--on-accent);
 }
 .band .btn--s {
-  border-color: color-mix(in srgb, var(--ink-inverse) 30%, transparent);
+  border-color: rgba(247, 248, 246, 0.3);
   color: var(--ink-inverse);
 }
 .band .btn--s:hover {
-  background: color-mix(in srgb, var(--ink-inverse) 10%, transparent);
+  background: rgba(247, 248, 246, 0.1);
   color: var(--ink-inverse);
+}
+@media (prefers-color-scheme: dark) {
+  .band p {
+    color: rgba(12, 16, 15, 0.74);
+  }
+  .band .btn--s {
+    border-color: rgba(12, 16, 15, 0.3);
+  }
+  .band .btn--s:hover {
+    background: rgba(12, 16, 15, 0.1);
+  }
 }
 @media (max-width: 760px) {
   .band {
