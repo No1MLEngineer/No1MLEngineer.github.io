@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>haql-engine — independent reservoir simulation audit | Haql Labs</title>
-<meta name="description" content="A from-scratch three-phase black-oil engine and an independent audit for Eclipse and OPM runs. Mass balance, convergence, reproduction and input integrity — with the misses published.">
+<meta name="description" content="A from-scratch three-phase black-oil engine and an independent audit for Eclipse and OPM runs. Mass balance, convergence, reproduction and input integrity — with SHA-256 provenance receipts, quarterly revision diffs, ensemble batch audits and byte-identical reproducibility, verified on your machine.">
 <link rel="canonical" href="https://haql-lab.github.io/haql-engine.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="haql-engine — independent reservoir simulation audit">
-<meta property="og:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published.">
+<meta property="og:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published — and a verdict that reproduces byte-identically on your machine.">
 <meta property="og:url" content="https://haql-lab.github.io/haql-engine.html">
 <meta name="theme-color" content="#0c100f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf9f5" media="(prefers-color-scheme: light)">
@@ -25,7 +25,7 @@
 <meta property="og:image:alt" content="Haql Labs — deterministic, offline software for oil and gas data">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="haql-engine — independent reservoir simulation audit">
-<meta name="twitter:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published.">
+<meta name="twitter:description" content="A three-phase black-oil engine and an independent audit for Eclipse and OPM runs. SPE1 and Norne evidence, with the failures published — and a verdict that reproduces byte-identically on your machine.">
 <meta name="twitter:image" content="https://haql-lab.github.io/assets/img/og-cover.png">
 <script type="application/ld+json">
 {
@@ -131,10 +131,46 @@ verdict           <span class="r">FAIL</span>  1 high</pre>
       </div>
       <div class="io__b">
         <h4>The audit</h4>
-        <p>Reads the deck and the run's own summary/restart output. Checks field material balance at 1e-6, convergence and solver-log health, cell-by-cell reproduction against a reference, and input integrity (PVT, relperm, grid, units, schedule). Emits Markdown, PDF and JSON with a report ID derived from the hashes.</p>
+        <p>Reads the deck and the run's own summary/restart output. Checks field material balance at 1e-6, convergence and solver-log health, cell-by-cell reproduction against a reference, and input integrity (PVT, relperm, grid, units, schedule, duplicate well definitions). Emits Markdown, PDF and JSON with a SHA-256 provenance manifest, and a report ID derived from the content of the inputs — not from wherever the audit happened to run.</p>
       </div>
     </div>
     <p class="fine">The audit does not simulate. When a run lacks balance vectors, it can instrument the deck with output-only vectors and re-run it in OPM Flow — and it records both runs. When a gate cannot be evaluated, it reports <code>UNKNOWN</code>; it never passes by default.</p>
+  </div>
+</section>
+
+<!-- ============ REPRODUCIBILITY ============ -->
+<section class="sec sec--alt" id="repro">
+  <div class="wrap">
+    <p class="eyebrow">Reproducible by construction</p>
+    <h2>Same evidence, same verdict, on any machine.</h2>
+    <p class="lede lede--c">An audit that cannot be re-run years later is an opinion. The toolchain now proves its own reproducibility, in your environment, on the evidence you sent.</p>
+    <div class="pains">
+      <article class="pain">
+        <h3>Provenance receipts</h3>
+        <p>Every run writes a manifest: SHA-256 of the deck, every INCLUDE file, the pre-registered gates — and with <code>--hash-run</code>, the entire run and reference tree. Paths are recorded machine-independently (relative, forward-slash), so the same evidence tree hashes identically on Linux, Windows and macOS.</p>
+      </article>
+      <article class="pain">
+        <h3>Content-derived report ID</h3>
+        <p>The report ID is the hash of what was audited, not of where it sat on a filesystem. Relocate the evidence tree, or re-run the audit on a different machine, and the ID still matches.</p>
+      </article>
+      <article class="pain">
+        <h3>No hidden clock</h3>
+        <p>By default no wall-clock timestamp enters the report — re-runs are byte-stable. If the client wants a date on the deliverable, it is passed explicitly (<code>--stamp</code>), never picked up from the environment.</p>
+      </article>
+      <article class="pain">
+        <h3>Selfcheck and doctor</h3>
+        <p><code>--selfcheck</code> runs the complete audit twice and requires byte-identical Markdown and JSON — on your machine, in front of you. <code>doctor.py</code> prints the environment passport and validates the invariants the audit depends on.</p>
+      </article>
+      <article class="pain">
+        <h3>Revision diff</h3>
+        <p><code>deckdiff.py</code> answers the real quarterly question: what changed between forecasts. Every changed keyword is classed into GRID / PVT / relperm / SOLUTION / schedule, and a physics-class change hard-fails — a silent model swap cannot be waved through as "minor updates".</p>
+      </article>
+      <article class="pain">
+        <h3>Ensembles and pinned references</h3>
+        <p><code>ensemble.py</code> audits every history-match realisation with the identical pre-registered gates and reports the worst run, not the average — plus the residual spread. Your ground-truth run is pinned by SHA in the reference library with drift detection, so every later audit can be proved to use the same reference.</p>
+      </article>
+    </div>
+    <p class="fine">Try it on your own machine: <code>python3 verify/doctor.py</code>, then <code>python3 verify/audit.py --deck CASE.DATA --run RUN/ --selfcheck</code>. The selfcheck runs the audit twice and fails loudly if the outputs differ by a single byte.</p>
   </div>
 </section>
 
@@ -196,7 +232,7 @@ verdict           <span class="r">FAIL</span>  1 high</pre>
     <ol class="flow">
       <li><b>Send</b><span>The deck with all INCLUDE files, the run directory (SMSPEC/UNSMRY, UNRST for cell comparisons), and a reference run if reproduction is in scope.</span></li>
       <li><b>Audit</b><span>Mass balance, convergence and log health, cell-by-cell reproduction, and input integrity. Same-day for SPE1-class; 2–3 days for a 10⁴–10⁵-cell sector; 1–2 weeks for a 10⁶-cell full field.</span></li>
-      <li><b>Readout</b><span>A PDF/Markdown report with severity-ranked findings and quoted evidence, a JSON record with deck/run hashes, and the exact reproduction command.</span></li>
+      <li><b>Readout</b><span>A PDF/Markdown report with severity-ranked findings and quoted evidence, a JSON record, a SHA-256 provenance manifest covering the deck, its INCLUDE closure and the gates, and the exact reproduction command. Re-running it is covered: the audit self-checks byte-identical output on any machine.</span></li>
       <li><b>Sign-off</b><span>A named reviewer is recorded on the report and signs off on the readout. Pass opens the next conversation; fail gets a written failure analysis, not a sales call.</span></li>
     </ol>
     <div class="tiers">
@@ -208,12 +244,12 @@ verdict           <span class="r">FAIL</span>  1 high</pre>
       <div class="tier tier--mid tier--no-badge">
         <h3>Standard audit</h3>
         <p class="tier__p"><b>$50k</b>/engagement</p>
-        <p>One run, one report, one readout. PDF + JSON + the exact reproduction command. The decision at stake is usually larger: a 1% error on a $100M development is $1M.</p>
+        <p>One run, one report, one readout. PDF + JSON + provenance manifest + the exact reproduction command. The decision at stake is usually larger: a 1% error on a $100M development is $1M.</p>
       </div>
       <div class="tier">
         <h3>Retainer</h3>
         <p class="tier__p"><b>$50k</b>/month</p>
-        <p>One audit per month, priority scheduling, named reviewer. Offered after a completed pilot — not before.</p>
+        <p>One audit per month, priority scheduling, named reviewer — and the calendar layer: quarterly deck-diff audits of every forecast revision, pinned reference runs for your evidence history, and ensemble audits of history-match sweeps. Offered after a completed pilot — not before.</p>
       </div>
     </div>
     <p class="fine">The $50k figure is the offer, not a claim of market demand. The public Norne case is not a client engagement. The first client audit is a pilot; the retainer is offered only after a completed pilot and a named reviewer.</p>
@@ -232,6 +268,9 @@ verdict           <span class="r">FAIL</span>  1 high</pre>
     <details><summary>Is it faster?</summary><p>No. On SPE1 it is about 10× slower than OPM Flow at the loose setting and 25–40× slower at the tolerance that passes its 1e-6 mass-balance gate. The value is independent verification, not speed.</p></details>
     <details><summary>What exactly does the audit check?</summary><p>Field material balance from the run's own in-place and cumulative vectors; Newton convergence and solver-log health; cell-by-cell pressure, saturation, BHP, oil rate and water cut against a reference; and input integrity — PVT, relperm, grid, units and schedule. It does not judge geology, upscaling, SCAL or history match.</p></details>
     <details><summary>What if my run has no balance vectors?</summary><p>The audit can instrument the deck with output-only FOIP/FWIP/FGIP vectors and re-run it in OPM Flow, then audit the re-run. The report records both runs and says the re-run is an independent reproduction, not your original run. Without that, the gate is UNKNOWN, not passed.</p></details>
+    <details><summary>Can we reproduce an audit years later?</summary><p>Yes, and it is designed for that. Every audited input is hashed into a provenance manifest (deck, every INCLUDE file, the gates; the full run tree with <code>--hash-run</code>). The report ID is derived from that content, so relocating the evidence or moving machines does not change it. <code>--selfcheck</code> re-runs the audit twice and requires byte-identical output; <code>doctor.py</code> prints the environment passport. No wall clock enters the report unless you explicitly stamp a date.</p></details>
+    <details><summary>We re-run our history match every quarter. Can you audit all of it?</summary><p>That is the intended cadence. <code>ensemble.py</code> audits every realisation with the same pre-registered gates in sorted, auditable order and reports the worst run and the residual spread — a match fair on average but loose on individual realisations is flagged. <code>deckdiff.py</code> then diffs this quarter's deck against the last: input or schedule changes are listed value-by-value, and any physics-class change fails the audit so a silent model swap cannot pass. Your pinned reference run is stored by SHA and proved unchanged at every use.</p></details>
+    <details><summary>What if a forecast revision quietly changed the model?</summary><p>The diff audit classes every changed keyword (grid, PVT, relperm, solution section versus schedule) and exits as a failure when the physics class moved. Value-level tables show exactly which numbers moved and by how much, including repetition defaults.</p></details>
     <details><summary>Has a client used it?</summary><p>Not yet. The evidence on this page is from the public SPE1 benchmark and Equinor's public Norne field case. The first client engagement is a pilot, with success criteria signed before work starts.</p></details>
   </div>
 </section>
@@ -245,6 +284,7 @@ verdict           <span class="r">FAIL</span>  1 high</pre>
     <a class="btn btn--p btn--lg" href="mailto:kunleaz100@gmail.com?subject=Simulation%20audit%20enquiry">kunleaz100@gmail.com</a>
     <div class="links">
       <div><b>Evidence</b><a href="#evidence">SPE1 and Norne results</a></div>
+      <div><b>Reproducibility</b><a href="#repro">Provenance receipts and selfcheck</a></div>
       <div><b>Source</b><a href="https://github.com/haql-lab" rel="noopener">github.com/haql-lab</a></div>
     </div>
   </div>
