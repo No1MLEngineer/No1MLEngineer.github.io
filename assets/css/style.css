@@ -340,8 +340,12 @@ section[id] {
   display: grid;
   place-items: center;
   flex: none;
-  background: var(--ink);
-  color: var(--bg);
+  background: transparent;
+  color: inherit;
+}
+.brand__mark svg,
+.logo__mar svg {
+  display: block;
 }
 .brand__word {
   display: inline-flex;
